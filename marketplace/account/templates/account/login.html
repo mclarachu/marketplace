@@ -1,0 +1,15 @@
+<h1>Login</h1>
+<div>{{ form.non_field_errors }}</div>
+<form action="" method="post">
+    {% csrf_token %}
+    <p>
+      Username: <input type="text" name="username" />
+      {{ form.username.errors }}
+    </p>
+      Password: <input type="password" name="password" />
+      {{ form.password.errors }}
+    </p>
+    <p>
+      <input type="submit" value="Login" />
+    </p>
+</form>

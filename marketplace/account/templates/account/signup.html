@@ -1,0 +1,22 @@
+<form action="" method="post">
+    {% csrf_token %}
+    <p>
+        Username: <input type="text" name="username" value="{{form.data.username}}"/>
+        {{form.username.errors}}
+    </p>
+    <p>
+        Email: <input type="text" name="email" value="{{form.data.email}}"/>
+        {{form.email.errors}}
+    </p>
+    <p>
+        Create password: <input type=password" name="password"/>
+        {{form.password.errors}}
+    </p>
+    <p>
+        Confirm password: <input type="password" name="password_confirm" />
+        {{ form.password_confirm.errors}}
+    </p>
+    <p>
+        <input type="submit" value="Create"/>
+    </p>
+</form>
