@@ -10,7 +10,8 @@ from . import forms
 # Create your views here.
 @login_required
 def info(request):
-    return HttpResponse('Welcome to our marketplace' + request.user.username)
+    return render(request,'account/welcome.html',{})
+
 
 def signup(request):
     context = {}
@@ -52,5 +53,4 @@ def do_login(request):
 
 def do_logout(request):
     logout(request)
-
-    return HttpResponseRedirect(reverse('login'))
+    return HttpResponseRedirect(reverse('index'))
