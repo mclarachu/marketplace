@@ -21,20 +21,18 @@ class Basket(models.Model):
 
 class ShippingAddress(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    fullname = models.CharField()
-    country = models.CharField()
-    street1 = models.CharField()
-    street2 = models.CharField()
-    city = models.CharField()
-    province = models.CharField()
+    fullname = models.CharField(max_length=40)
+    country = models.CharField(max_length=40)
+    street1 = models.CharField(max_length=40)
+    street2 = models.CharField(max_length=40)
+    city = models.CharField(max_length=40)
+    province = models.CharField(max_length=40)
     postal_code = models.PositiveIntegerField()
     phone_num = models.PositiveIntegerField()
 
 class OrderHistory(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     basket = models.PositiveIntegerField()
-    item = models.ForeignKey(Product)
-    shipped = models.ForeignKey(ShippingAddress)
+    item = models.ForeignKey(Product, on_delete=models.CASCADE)
+    shipped = models.ForeignKey(ShippingAddress, on_delete=models.CASCADE)
     total_payment = models.DecimalField(max_digits=40,decimal_places=2)
-
-
