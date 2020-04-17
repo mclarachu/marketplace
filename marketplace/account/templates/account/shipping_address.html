@@ -1,0 +1,45 @@
+{% extends "store/base.html" %}
+{% block content %}
+<h1>Add a new shipping address</h1>
+<form action="" method="POST">
+    {% csrf token %}
+    <p>
+        Full name : <input type="text" name="fullname" value="{{form.data.fullname}}"/>
+        {{form.fullname.errors}}
+    </p>
+    <p>
+        Street :
+        <div>
+            <input type="text" name="street1" value="{{form.data.street1}}"/>
+            {{form.street1.errors}}
+        </div>
+        <div>
+            <input type="text" name="street2" value="{{form.data.street2}}"/>
+            {{form.street2.errors}}
+        </div>
+    </p>
+    <p>
+        City : <input type="text" name="city" value="{{form.data.city}}"/>
+        {{form.city.errors}}
+    </p>
+    <p>
+        Province : <input type="text" name="province" value="{{form.data.province}}"/>
+        {{form.province.errors}}
+    </p>
+    <p>
+        Postal code : <input type="number" name="postal_code" value="{{form.data.postal_code}}"/>
+        {{form.postal_code.errors}}
+    </p>
+    <p>
+        Country : <input type="text" name="country" value="{{form.data.country}}"/>
+        {{form.country.errors}}
+    </p>
+    <p>
+        Country : <input type="tel" name="phone_num" value="{{form.data.phone_num}}"/>
+        {{form.phone_num.errors}}
+    </p>
+    <p>
+        <input type="submit" value="Add Address"/>
+    </p>
+</form>
+{% endblock %}

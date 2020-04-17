@@ -1,12 +1,13 @@
 from django import forms
 from django.core.validators import MinValueValidator
+from .models import Product, ShippingAddress
 
-class addressForm(forms.Form):
-    fullname = forms.CharField()
-    country = forms.CharField()
-    street1 = forms.CharField()
-    street2 = forms.CharField()
-    city = forms.CharField()
-    province = forms.CharField()
-    postal_code = forms.IntegerField(validators=[MinValueValidator(0)])
-    phone_num = forms.IntegerField(validators=[MinValueValidator(0)])
+class AddressForm(forms.Form):
+    class Meta:
+        model = ShippingAddress
+        fields = ['fullname','country','street1','street2','city','province','postal_code','phone_num']
+
+class ProductForm(ModelForm):
+    class Meta:
+        model = Product
+        fields = ['name','image','description',]
