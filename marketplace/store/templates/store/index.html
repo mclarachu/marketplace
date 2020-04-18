@@ -1,4 +1,12 @@
 {% extends "store/base.html" %}
 {% block content %}
-    Whatever can be here, maybe all the items
+{% if all_products %}
+    <ul>
+        {% for product in all_products %}
+        <li><a href="/account/{{product.id}}/">Item no.: {{product.id}}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+   <p>OOPPSYY, WE DONT HAVE ANYTHING TO SELL. HEHE ^_^</p>
+{% endif %}
 {% endblock %}
