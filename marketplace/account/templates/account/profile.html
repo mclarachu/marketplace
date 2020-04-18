@@ -1,5 +1,25 @@
 {% extends "store/base.html" %}
 {% block content %}
-<title>{{request.user.username}}</title>
-
+<title>{{seller}}</title>
+{% if request.user.is_authenticated %}
+<button onclick="document.location = 'add_product.html'">New item</button></br>
+{% endif %}
+{% if items %}
+<ul>
+    {% for item in items %}
+    <li>
+        <p><a href="{% url 'account:product_detail' item.id %}">Item name: {{item.name}}</a></p>
+        <p><img src="{{item.image.url}}"/></p>
+        <p>Price : {{item.price}}</p>
+        <p>Availability : {{item.inventory}}</p>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+    {% if request.user.is_authenticated %}
+You do not have anything to sell
+    {% else %}
+{{seller}} has nothing to sell
+    {% endif %}
+{% endif %}
 {% endblock %}

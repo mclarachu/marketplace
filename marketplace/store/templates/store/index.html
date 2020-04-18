@@ -3,7 +3,10 @@
 {% if all_products %}
     <ul>
         {% for product in all_products %}
-        <li><a href="/account/{{product.id}}/">Item no.: {{product.id}}</a></li>
+        <li>
+            <a href="{% url 'account:product_detail' product.id %}">Item: {{product.name}}</a>
+            <p><img src="{{product.image.url}}"/></p>
+        </li>
         {% endfor %}
     </ul>
 {% else %}
