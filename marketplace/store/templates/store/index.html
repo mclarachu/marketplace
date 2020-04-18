@@ -1,6 +1,19 @@
 {% extends "store/base.html" %}
 {% block content %}
+
 CURRENT DELIVERY TIMES DELAYED BY 6-8 DAYS!
 
-NEW PRODUCTS, RECENTLY VIEWED, Whatever can be here, maybe all the items
+{% if all_products %}
+    <ul>
+        {% for product in all_products %}
+        <li>
+            <a href="{% url 'account:product_detail' product.id %}">Item: {{product.name}}</a>
+            <p><img src="{{product.image.url}}"/></p>
+        </li>
+        {% endfor %}
+    </ul>
+{% else %}
+   <p>OOPPSYY, WE DONT HAVE ANYTHING TO SELL. HEHE ^_^</p>
+{% endif %}
+
 {% endblock %}

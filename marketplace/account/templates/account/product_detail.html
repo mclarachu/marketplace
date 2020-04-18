@@ -1,0 +1,8 @@
+{% extends "store/base.html" %}
+{% block content %}
+<p>Item name: {{item.name}}</p>
+<p><img src="{{item.image.url}}"/></p>
+<p>Price : {{item.price}}</p>
+<p>Description: {{item.description}}</p>
+<p>Availability : {{item.inventory}}</p>
+{% endblock %}
