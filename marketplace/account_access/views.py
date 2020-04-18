@@ -7,11 +7,21 @@ from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from . import forms
 
-# Create your views here.
-@login_required
-def info(request):
-    return render(request,'account_access/welcome.html',{})
 
+# Create your views here.
+def market(request):
+    return render(request,'account_access/market.html',{})
+
+
+def info(request):
+    return render(request,'account_access/market.html',{})
+@login_required
+def profile(request):
+    return render(request,'account_access/profile.html',{})
+
+
+def show_store(request):
+    return render(request,'account_access/store.html',{})
 
 def signup(request):
     context = {}
@@ -21,18 +31,19 @@ def signup(request):
             try:
                 user = User.objects.create_user(
                     form.cleaned_data['username'],
-                    email = form.cleaned_data['email'],
-                    password = form.cleaned_data['password']
+                    email=form.cleaned_data['email'],
+                    password=form.cleaned_data['password']
                 )
                 return HttpResponseRedirect(reverse('login'))
             except IntegrityError:
-                form.add_error('username','Username is taken')
+                form.add_error('username', 'Username is taken')
 
         context['form'] = form
-    return render(request,'account_access/signup.html',context)
+    return render(request, 'account_access/signup.html', context)
+
 
 def do_login(request):
-    context={}
+    context = {}
     if request.method == 'POST':
         form = forms.LoginForm(request.POST)
         if form.is_valid():
@@ -40,20 +51,18 @@ def do_login(request):
                 request,
                 username=form.cleaned_data['username'],
                 password=form.cleaned_data['password']
-                                )
+            )
             if user is not None:
-                login(request,user)
+                login(request, user)
                 if 'next' in request.GET:
                     return HttpResponseRedirect(request.GET['next'])
                 return HttpResponseRedirect(reverse('acc_info'))
             else:
-                form.add_error(None,'Incorrect username or password')
+                form.add_error(None, 'Incorrect username or password')
         context['form'] = form
-    return render(request,'account_access/login.html',context)
+    return render(request, 'account_access/login.html', context)
+
 
 def do_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('index'))
-
-
-
