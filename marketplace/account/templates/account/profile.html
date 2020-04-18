@@ -1,5 +1,6 @@
 {% extends "store/base.html" %}
 {% block content %}
+
 <title>{{seller}}</title>
 {% if request.user.is_authenticated %}
 <button onclick="document.location = 'add_product.html'">New item</button></br>
@@ -22,4 +23,5 @@ You do not have anything to sell
 {{seller}} has nothing to sell
     {% endif %}
 {% endif %}
+
 {% endblock %}

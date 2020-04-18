@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from account.models import Product
 
+
 def index(request):
     #return HttpResponse('<h1>heyya</h1>')
     all_products = Product.objects.all()
