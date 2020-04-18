@@ -2,7 +2,7 @@
 {% block content %}
 <h1>Add an item to sell</h1>
 <form action="" method="POST" enctype="multipart/form-data">
-    {% csrf token %}
+    {% csrf_token %}
     <div>
         Name: <input type="text" name="name" value="{{form.data.name}}"/>
         {{form.name.errors}}
@@ -14,6 +14,14 @@
     <div>
         Description: <input type="text" name="description" />
         {{form.description.errors}}
+    </div>
+    <div>
+        Set price: $<input type="number" min="0" name="price" />
+        {{form.price.errors}}
+    </div>
+    <div>
+        In inventory: <input type="number" min="0" name="inventory" />
+        {{form.inventory.errors}}
     </div>
     <input type="submit" value="Add"/>
 </form>

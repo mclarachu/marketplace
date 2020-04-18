@@ -1,7 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 
 # Create your models here.
+def validate_price(value):
+    if value>=0:
+        return value
+    else:
+        raise ValidationError("Price must be a positive value")
 
 def get_upload_path(instance, filename):
     return 'user-' + str(instance.seller.id) + '/' + filename
@@ -11,7 +17,7 @@ class Product(models.Model):
     name = models.CharField(max_length=30)
     image = models.FileField(upload_to=get_upload_path)
     description = models.CharField(max_length=1000)
-    price = models.DecimalField(max_digits=19,decimal_places=2)
+    price = models.DecimalField(max_digits=19,decimal_places=2,validators=[validate_price])
     inventory = models.PositiveIntegerField()
 
 class Basket(models.Model):

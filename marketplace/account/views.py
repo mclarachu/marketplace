@@ -13,7 +13,7 @@ from django.contrib.auth.decorators import login_required
 def add_product(request):
     context = {}
     if request.method == 'POST':
-        form = ProductForm(request.POST, request.FILES)
+        form = form.ProductForm(request.POST, request.FILES)
         if form.is_valid():
             item = form.save(commit=False)
             item.seller = request.user
