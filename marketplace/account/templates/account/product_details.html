@@ -1,0 +1,20 @@
+{% extends "store/base.html" %}
+{% block content %}
+<h1>Add an item to sell</h1>
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf token %}
+    <div>
+        Name: <input type="text" name="name" value="{{form.data.name}}"/>
+        {{form.name.errors}}
+    </div>
+    <div>
+        Image: <input type="file" name="image" />
+        {{form.image.errors}}
+    </div>
+    <div>
+        Description: <input type="text" name="description" />
+        {{form.description.errors}}
+    </div>
+    <input type="submit" value="Add"/>
+</form>
+{% endblock %}
