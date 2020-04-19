@@ -22,7 +22,7 @@ def add_product(request):
             item = form.save(commit=False)
             item.seller = request.user
             item.save()
-            return HttpResponseRedirect(reverse('profile',args=(request.user.id)))
+            return HttpResponseRedirect(reverse('profile',kwargs={'seller_id': request.user.id}))
         context['form'] = form
     return render(request,'profile/add_product.html',context)
 
@@ -35,7 +35,7 @@ def add_address(request):
             address = form.save(commit=False)
             address.user = request.user
             address.save()
-            return HttpResponseRedirect(reverse('profile',args=(request.user.id)))
+            return HttpResponseRedirect(reverse('profile'))
         context['form'] = form
     return render(request, 'profile/shipping_address.html', context)
 
