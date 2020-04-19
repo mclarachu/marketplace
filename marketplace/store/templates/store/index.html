@@ -10,12 +10,10 @@ CURRENT DELIVERY TIMES DELAYED BY 6-8 DAYS!
             <a href="{% url 'account:product_detail' product.id %}">Item: {{product.name}}</a>
             <p>Seller: {{product.seller}}</p>
             <div class="index"><img src="{{product.image.url}}" alt="{{product.name}}"/></div>
-            <p></p>
         </li>
         {% endfor %}
     </ul>
 {% else %}
    <p>OOPPSYY, WE DONT HAVE ANYTHING TO SELL. HEHE ^_^</p>
-{% endif %}
-
+{% endif %}f
 {% endblock %}

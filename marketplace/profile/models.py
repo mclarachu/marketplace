@@ -24,9 +24,8 @@ class Product(models.Model):
         return self.seller.username + ' - ' + self.name
 
 class Basket(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
-    item = models.ForeignKey(Product,on_delete=models.CASCADE)
-    amount = models.PositiveIntegerField()
+    owner = models.ForeignKey(User,on_delete=models.CASCADE)
+    items = models.ManyToManyField(Product)
 
     def __str__(self):
         return self.user.username + ' - ' + self.name
@@ -46,8 +45,7 @@ class ShippingAddress(models.Model):
 
 class OrderHistory(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    basket = models.PositiveIntegerField()
-    item = models.ForeignKey(Product, on_delete=models.CASCADE)
+    items = models.ManyToManyField(Product)
     shipped = models.ForeignKey(ShippingAddress, on_delete=models.CASCADE)
     total_payment = models.DecimalField(max_digits=40,decimal_places=2)
 

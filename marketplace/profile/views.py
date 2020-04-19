@@ -1,9 +1,10 @@
 
 from django.shortcuts import render,get_object_or_404
 from django.contrib.auth.models import User
-from .models import Product,ShippingAddress
+from .models import Product,ShippingAddress,Basket,OrderHistory
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
+from django.core.exceptions import ObjectDoesNotExist
 
 from . import forms
 
@@ -69,10 +70,36 @@ def delete_item(request,item_id):
 
 @login_required
 def add_to_basket(request,item_id,num):
+    prod = get_object_or_404(Product,pk=item_id)
+    basket = get_object_or_404(Basket,owner=request.user.id)
+    basket.items.add(prod)
 
-    item = Basket(
-        user = request.user.id,
-        item = item_id,
-        amount = num
-    )
+@login_required
+def view_basket(request):
+    try:
+        basket = Basket.objects.get(owner=request.user.id)
+    except ObjectDoesNotExist:
+        basket = Basket(owner=request.user)
+        basket.save()
+    items = basket.items.all()
+    totalamount = 0
+    for item in items:
+        totalamount += item.price
+
+    return render(request,'profile/basket.html',{'items':items,'total':totalamount})
+
+@login_required
+def remove_from_basket(request,item_id):
+    basket = get_object_or_404(Basket, owner=request.user.id)
+    item = get_object_or_404(Product,pk=item_id)
+    basket.items.remove(item)
+    items = basket.items.all()
+    for item in items:
+        totalamount = 0
+        totalamount += item.price
+
+    return render(request, 'profile/cart.html', {'items': items, 'total': totalamount})
+
+
+
 

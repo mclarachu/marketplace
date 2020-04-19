@@ -16,4 +16,4 @@ class ProductForm(ModelForm):
 class AddToBasket(ModelForm):
     class Meta:
         model = Basket
-        fields = ['user','item','amount']
+        fields = ['owner','items']

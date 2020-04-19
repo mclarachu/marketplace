@@ -1,0 +1,17 @@
+{% extends "store/base.html" %}
+{% block content %}
+<h1>YOUR CART</h1>
+{% if items %}
+<ul>
+    {% for item in items %}
+    <li>
+        <a href="{% url 'account:product_detail' item.id %}">Item: {{item.name}} </a>
+        Price: {{item.price}}
+    </li>
+    {% endfor %}
+    TOTAL: {{total}}
+</ul>
+{% else %}
+Oh MEOWW! You dont have anything in your basket!
+{% endif %}
+{% endblock %}

@@ -3,16 +3,17 @@
 
 <p>Email: {{seller.email}}</p>
 
-<h1> {{seller.username}}'s store </h1>
+
+<h1> Welcome to {{seller.username}}'s store </h1>
 {% if request.user.is_authenticated %}
 <button onclick="document.location = 'add_product'">New item</button></br>
 {% endif %}
 {% if items %}
 <ul>
     {% for item in items %}
-    <li>
+    <li class="product">
         <a href="{% url 'account:product_detail' item.id %}">Item name: {{item.name}}</a>
-        <p class="product"><img src="{{item.image.url}}"/></p>
+        <img src="{{item.image.url}}"/>
         <p>Price : {{item.price}}</p>
         <p>Availability : {{item.inventory}}</p>
     </li>

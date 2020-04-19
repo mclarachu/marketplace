@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from . import forms
+from profile.models import Basket
 
 
 # Create your views here.
@@ -22,6 +23,10 @@ def signup(request):
                     first_name=form.cleaned_data['first_name'],
                     last_name=form.cleaned_data['last_name']
                 )
+
+                #Create a basket for user
+                newBasket = Basket(owner = user.id)
+
                 return HttpResponseRedirect(reverse('login'))
             except IntegrityError:
                 form.add_error('username', 'Username is taken')
