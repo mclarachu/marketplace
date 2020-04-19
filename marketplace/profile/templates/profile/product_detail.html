@@ -1,8 +1,9 @@
 {% extends "store/base.html" %}
 {% block content %}
 <p>Item name: {{item.name}}</p>
-<p><img src="{{item.image.url}}"/></p>
-<p>Price : {{item.price}}</p>
+<div class="product"><img src="{{item.image.url}}"/></div>
+<p>Price : ${{item.price}}</p>
+<p><a href="{% url 'account:profile' item.seller.id %}"></a>Seller : {{item.seller.username}}</p>
 <p>Description: {{item.description}}</p>
 <p>Availability : {{item.inventory}}</p>
 {% endblock %}

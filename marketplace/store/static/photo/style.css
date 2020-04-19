@@ -1,0 +1,19 @@
+.index {
+ height: 300px;
+ width: 300px;
+ overflow: hidden;
+}
+.index img {
+ height: auto;
+ width: 300px;
+}
+
+.product {
+ height: 400px;
+ width: 350px;
+ overflow: hidden;
+}
+.product img {
+ height: auto;
+ width: 350px;
+}

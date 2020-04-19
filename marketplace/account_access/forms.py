@@ -20,7 +20,8 @@ class SignupForm(forms.Form):
     username = forms.CharField(
         error_messages={'required': 'You must enter a username.'}
     )
-
+    first_name = forms.CharField()
+    last_name = forms.CharField()
     email = forms.EmailField()
     password = forms.CharField(
         validators=[validate_password_number,validate_password_alpha],

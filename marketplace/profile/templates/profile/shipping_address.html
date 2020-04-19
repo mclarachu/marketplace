@@ -4,17 +4,13 @@
 <form action="" method="POST">
     {% csrf_token %}
     <p>
-        Full name : <input type="text" name="fullname" value="{{form.data.fullname}}"/>
-        {{form.fullname.errors}}
-    </p>
-    <p>
-        Street :
+        Street address:
         <div>
-            <input type="text" name="street1" value="{{form.data.street1}}"/>
+            <input type="text" name="street1" value="{{form.data.street1}}" placeholder="Street and number, P.O. box,c/o"/>
             {{form.street1.errors}}
         </div>
         <div>
-            <input type="text" name="street2" value="{{form.data.street2}}"/>
+            <input type="text" name="street2" value="{{form.data.street2}}" placeholder="Apartment,suite,unit,building,floor,etc."/>
             {{form.street2.errors}}
         </div>
     </p>
@@ -27,7 +23,7 @@
         {{form.province.errors}}
     </p>
     <p>
-        Postal code : <input type="number" name="postal_code" value="{{form.data.postal_code}}"/>
+        Postal code : <input type="text" name="postal_code" value="{{form.data.postal_code}}"/>
         {{form.postal_code.errors}}
     </p>
     <p>
@@ -35,7 +31,7 @@
         {{form.country.errors}}
     </p>
     <p>
-        Country : <input type="tel" name="phone_num" value="{{form.data.phone_num}}"/>
+        Contact Number : <input type="tel" name="phone_num" value="{{form.data.phone_num}}"/>
         {{form.phone_num.errors}}
     </p>
     <p>

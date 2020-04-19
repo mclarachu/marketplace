@@ -13,7 +13,7 @@
     {% for item in items %}
     <li>
         <p><a href="{% url 'account:product_detail' item.id %}">Item name: {{item.name}}</a></p>
-        <p><img src="{{item.image.url}}"/></p>
+        <p class="product"><img src="{{item.image.url}}"/></p>
         <p>Price : {{item.price}}</p>
         <p>Availability : {{item.inventory}}</p>
     </li>

@@ -21,7 +21,9 @@ def signup(request):
                 user = User.objects.create_user(
                     form.cleaned_data['username'],
                     email=form.cleaned_data['email'],
-                    password=form.cleaned_data['password']
+                    password=form.cleaned_data['password'],
+                    first_name=form.cleaned_data['first_name'],
+                    last_name=form.cleaned_data['last_name']
                 )
                 return HttpResponseRedirect(reverse('login'))
             except IntegrityError:

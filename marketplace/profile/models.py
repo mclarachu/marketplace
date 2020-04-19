@@ -20,21 +20,29 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=19,decimal_places=2,validators=[validate_price])
     inventory = models.PositiveIntegerField()
 
+    def __str__(self):
+        return self.seller.username + ' - ' + self.name
+
 class Basket(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     item = models.ForeignKey(Product,on_delete=models.CASCADE)
     amount = models.PositiveIntegerField()
 
+    def __str__(self):
+        return self.user.username + ' - ' + self.name
+
 class ShippingAddress(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    fullname = models.CharField(max_length=40)
     country = models.CharField(max_length=40)
     street1 = models.CharField(max_length=40)
     street2 = models.CharField(max_length=40)
     city = models.CharField(max_length=40)
     province = models.CharField(max_length=40)
-    postal_code = models.PositiveIntegerField()
+    postal_code = models.CharField(max_length=10)
     phone_num = models.PositiveIntegerField()
+
+    def __str__(self):
+        return self.id + ' - ' + self.user.username
 
 class OrderHistory(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -42,3 +50,6 @@ class OrderHistory(models.Model):
     item = models.ForeignKey(Product, on_delete=models.CASCADE)
     shipped = models.ForeignKey(ShippingAddress, on_delete=models.CASCADE)
     total_payment = models.DecimalField(max_digits=40,decimal_places=2)
+
+    def __str__(self):
+        return self.id + ' - ' + self.user.username

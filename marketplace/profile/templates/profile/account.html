@@ -2,7 +2,22 @@
 {% block content %}
 <title>ACCOUNT DETAILS:</title>
 <p>Username: {{request.user.username}}</p>
-Add details like adding shipping address.
+<p>Email: {{request.user.email}}</p>
+<p>Full name: {{request.user.get_full_name}}</p>
+<p>Shipping Address(es): </p>
+<p>
+    {% if addresses %}
+    {% for address in addresses %}
+<div>{{address.street1}}</div>
+<div>{{address.street2}}</div>
+<div>{{address.postal_code}} {{address.city}}, {{address.province}}</div>
+<div>{{address.country}}</div>
+<div>Contact number:{{address.phone_num}}</div>
+    {% endfor %}
+    {% else %}
+<a href="{% url 'account:add_address' %}">Add an address</a>
+    {% endif %}
+</p>
 Changing password.
 add profile image.
 change username and stuff like that
