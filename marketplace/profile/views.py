@@ -2,6 +2,8 @@
 from django.shortcuts import render,get_object_or_404
 from django.contrib.auth.models import User
 from .models import Product,ShippingAddress
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.urls import reverse
 
 from . import forms
 from django.contrib.auth.decorators import login_required
@@ -15,7 +17,7 @@ def account(request):
 def add_product(request):
     context = {}
     if request.method == 'POST':
-        form = form.ProductForm(request.POST, request.FILES)
+        form = forms.ProductForm(request.POST, request.FILES)
         if form.is_valid():
             item = form.save(commit=False)
             item.seller = request.user
