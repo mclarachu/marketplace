@@ -1,6 +1,6 @@
 from django.urls import path, include
 from . import views
-
+app_name='account'
 urlpatterns = [
 
     path('<int:seller_id>',views.profile,name='profile'),
