@@ -35,7 +35,7 @@ class ShippingAddress(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     country = models.CharField(max_length=40)
     street1 = models.CharField(max_length=40)
-    street2 = models.CharField(max_length=40)
+    street2 = models.CharField(max_length=40,blank=True)
     city = models.CharField(max_length=40)
     province = models.CharField(max_length=40)
     postal_code = models.CharField(max_length=10)

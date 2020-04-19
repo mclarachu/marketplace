@@ -9,9 +9,6 @@ from . import forms
 
 
 # Create your views here.
-def info(request):
-    return render(request,'store/index.html',{})
-
 def signup(request):
     context = {}
     if request.method == 'POST':
@@ -47,7 +44,7 @@ def do_login(request):
                 login(request, user)
                 if 'next' in request.GET:
                     return HttpResponseRedirect(request.GET['next'])
-                return HttpResponseRedirect(reverse('acc_info'))
+                return HttpResponseRedirect(reverse('index'))
             else:
                 form.add_error(None, 'Incorrect username or password')
         context['form'] = form

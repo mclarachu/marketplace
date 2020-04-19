@@ -45,7 +45,7 @@ def add_address(request):
 def profile(request,seller_id):
     items = Product.objects.filter(seller=seller_id)
     seller = get_object_or_404(User,pk=seller_id)
-    context = {'items': items, 'seller': seller.username}
+    context = {'items': items, 'seller': seller}
     return render(request, 'profile/profile.html', context)
 
 def product_detail(request,prod_id):

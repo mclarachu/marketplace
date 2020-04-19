@@ -1,10 +1,9 @@
 {% extends "store/base.html" %}
 {% block content %}
 
-<title>{{seller}}</title>
-<p>Email: </p>
+<p>Email: {{seller.email}}</p>
 
-<h1> YOUR STORE </h1>
+<h1> {{seller.username}}'s store </h1>
 {% if request.user.is_authenticated %}
 <button onclick="document.location = 'add_product'">New item</button></br>
 {% endif %}
@@ -12,7 +11,7 @@
 <ul>
     {% for item in items %}
     <li>
-        <p><a href="{% url 'account:product_detail' item.id %}">Item name: {{item.name}}</a></p>
+        <a href="{% url 'account:product_detail' item.id %}">Item name: {{item.name}}</a>
         <p class="product"><img src="{{item.image.url}}"/></p>
         <p>Price : {{item.price}}</p>
         <p>Availability : {{item.inventory}}</p>
