@@ -2,6 +2,9 @@
 {% block content %}
 
 <title>{{seller}}</title>
+<p>Email: </p>
+
+<h1> YOUR STORE </h1>
 {% if request.user.is_authenticated %}
 <button onclick="document.location = 'add_product'">New item</button></br>
 {% endif %}
@@ -18,7 +21,7 @@
 </ul>
 {% else %}
     {% if request.user.is_authenticated %}
-You do not have anything to sell
+Your store's current inventory is feeling a bit empty! MEOW!
     {% else %}
 {{seller}} has nothing to sell
     {% endif %}

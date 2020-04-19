@@ -9,19 +9,8 @@ from . import forms
 
 
 # Create your views here.
-def market(request):
-    return render(request,'account_access/market.html',{})
-
-
 def info(request):
-    return render(request,'account_access/market.html',{})
-@login_required
-def profile(request):
-    return render(request,'account_access/profile.html',{})
-
-
-def show_store(request):
-    return render(request,'account_access/store.html',{})
+    return render(request,'store/market.html',{})
 
 def signup(request):
     context = {}
