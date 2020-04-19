@@ -10,7 +10,7 @@ from . import forms
 
 # Create your views here.
 def info(request):
-    return render(request,'store/market.html',{})
+    return render(request,'store/index.html',{})
 
 def signup(request):
     context = {}
