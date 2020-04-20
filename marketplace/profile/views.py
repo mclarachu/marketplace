@@ -123,6 +123,14 @@ def remove_from_basket(request,item_id):
     items = ItemBasket.objects.filter(basket=basket)
     return render(request, 'profile/basket.html', {'items': items, 'total': basket.totalAmount})
 
+def checkout(request):
+    basket = get_object_or_404(Basket,owner=request.user)
+    list = ItemBasket.objects.filter(basket = basket)
+    addresses = ShippingAddress.objects.filter(user=request.user)
+    return render(request,'profile/checkout.html',{'list':list,'addresses':address})
+
+
+
 
 
 

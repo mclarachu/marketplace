@@ -17,3 +17,7 @@ class AddToBasket(ModelForm):
     class Meta:
         model = ItemBasket
         fields =['count']
+
+class Checkout(forms.Form):
+    creditcard = forms.CharField()
+    address = forms.IntegerField()
