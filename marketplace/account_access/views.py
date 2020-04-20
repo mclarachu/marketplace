@@ -49,7 +49,7 @@ def do_login(request):
                 login(request, user)
                 if 'next' in request.GET:
                     return HttpResponseRedirect(request.GET['next'])
-                return HttpResponseRedirect(reverse('index'))
+                return HttpResponseRedirect(reverse('store:index'))
             else:
                 form.add_error(None, 'Incorrect username or password')
         context['form'] = form
@@ -58,4 +58,4 @@ def do_login(request):
 
 def do_logout(request):
     logout(request)
-    return HttpResponseRedirect(reverse('index'))
+    return HttpResponseRedirect(reverse('store:index'))

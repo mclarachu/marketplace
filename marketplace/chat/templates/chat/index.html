@@ -1,21 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8"/>
-    <title>Chat Rooms</title>
-</head>
-<body>
-<p>
-    <a href="{% url 'index' %}">Home</a>
-    <a href="{% url 'signup' %}">Signup</a>
-    <a href="{% url 'login' %}">Login</a>
-    <a href="{% url 'logout' %}">Logout</a>
-</p>
-
+{% extends "store/base.html" %}
+{% block content %}
+<h1>JOIN A CHAT ROOM</h1>
 What chat room would you like to enter?
 <br/><input id="room-name-input" type="text" size="100"/><br/>
 <input id="room-name-submit" type="button" value="Enter"/>
-
+{% endblock %}
+{% block script %}
 <script>
     document.getElementById('room-name-input').focus();
     document.getElementById('room-name-input').onkeyup = function(e) {
@@ -29,5 +19,5 @@ What chat room would you like to enter?
         window.location.pathname = '/chat/' + roomName + '/';
     };
 </script>
-</body>
-</html>
+{% endblock %}
+
