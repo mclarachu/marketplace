@@ -26,7 +26,7 @@ class Product(models.Model):
 
 class Basket(models.Model):
     owner = models.ForeignKey(User,on_delete=models.CASCADE)
-    totalAmount=models.PositiveIntegerField(default=0)
+    totalAmount=models.DecimalField(max_digits=19,decimal_places=2,validators=[validate_price])
 
     def __str__(self):
         return self.owner.username

@@ -3,6 +3,10 @@ from django.forms import ModelForm
 from django.core.validators import MinValueValidator
 from .models import Product, ShippingAddress, ItemBasket
 
+PAYMENT_CHOICES = (
+    ('C', 'CreditCard'),
+    ('P', 'PayPal')
+)
 class AddressForm(ModelForm):
     class Meta:
         model = ShippingAddress
@@ -19,5 +23,7 @@ class AddToBasket(ModelForm):
         fields =['count']
 
 class Checkout(forms.Form):
+    payment_option = forms.ChoiceField(
+        widget=forms.RadioSelect, choices=PAYMENT_CHOICES)
     creditcard = forms.CharField()
-    address = forms.IntegerField()
+    addressChoice = forms.IntegerField()

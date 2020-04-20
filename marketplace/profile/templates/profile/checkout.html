@@ -1,0 +1,42 @@
+{% extends "store/base.html" %}
+{% block content %}
+<h1>SUMMARY</h1>
+{% if list %}
+<table>
+    <thead>
+    <tr>
+        <th>Item</th>
+        <th>Price</th>
+        <th>Amount</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in list %}
+    <tr>
+        <td>{{item.item.name}}</td>
+        <td>${{item.item.price}}</td>
+        <td>{{item.count}}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<p><strong>Total: </strong> ${{total}}</p>
+<h3>Shipping Address(es)</h3>
+{% if addresses %}
+<form action="{% url 'account:checkout' %}" method="post">
+    {% for address in addresses %}
+    <input type="radio" name="addressChoice" value="{{address.id}}"/>
+    <div>{{address.street1}}</div>
+    <div>{{address.street2}}</div>
+    <div>{{address.postal_code}} {{address.city}}, {{address.province}}</div>
+    <div>{{address.country}}</div>
+    <div>Contact number:{{address.phone_num}}</div>
+{% endfor %}
+{% endif %}
+    <a href="{% url 'account:add_address2' %}">Add an address</a>
+    <h3>Payment Option</h3>
+    <input type="radio" name="payment_option" value="C"/> Credit Card
+    <input type="radio" name="payment_option" value="P"/> PayPal
+</form>
+{% endif %}
+{% endblock %}

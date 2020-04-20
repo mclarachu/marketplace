@@ -39,7 +39,7 @@ def add_address(request):
             address = form.save(commit=False)
             address.user = request.user
             address.save()
-            return HttpResponseRedirect(reverse('account'))
+            return HttpResponseRedirect(reverse('account:account'))
         context['form'] = form
     return render(request, 'profile/shipping_address.html', context)
 
@@ -123,11 +123,25 @@ def remove_from_basket(request,item_id):
     items = ItemBasket.objects.filter(basket=basket)
     return render(request, 'profile/basket.html', {'items': items, 'total': basket.totalAmount})
 
+@login_required
 def checkout(request):
     basket = get_object_or_404(Basket,owner=request.user)
     list = ItemBasket.objects.filter(basket = basket)
     addresses = ShippingAddress.objects.filter(user=request.user)
-    return render(request,'profile/checkout.html',{'list':list,'addresses':address})
+    return render(request,'profile/checkout.html',{'list':list,'total':basket.totalAmount,'addresses':addresses})
+
+@login_required
+def add_address2(request):
+    context = {}
+    if request.method == 'POST':
+        form = forms.AddressForm(request.POST)
+        if form.is_valid():
+            address = form.save(commit=False)
+            address.user = request.user
+            address.save()
+            return HttpResponseRedirect(reverse('account:checkout'))
+        context['form'] = form
+    return render(request, 'profile/shipping_address.html', context)
 
 
 
