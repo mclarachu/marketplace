@@ -102,11 +102,6 @@ def view_basket(request):
         basket = Basket(owner=request.user)
         basket.save()
     items = ItemBasket.objects.filter(basket=basket)
-   # totalamount = 0
-   # for item in items:
-   #     totalamount += item.item.price*item.count
-   # basket.totalAmount = totalamount
-   # basket.save()
     return render(request,'profile/basket.html',{'items':items,'total':basket.totalAmount})
 
 @login_required
@@ -126,12 +121,7 @@ def remove_from_basket(request,item_id):
     #delete item from basket
     ib.delete()
     items = ItemBasket.objects.filter(basket=basket)
-   # totalamount = 0
-   # for item in items:
-   #     totalamount += item.item.price*item.count
-   # basket.totalAmount -= totalamount
-   # basket.save()
-    return render(request, 'profile/basket.html', {'items': items, 'total': basket.totalamount})
+    return render(request, 'profile/basket.html', {'items': items, 'total': basket.totalAmount})
 
 
 
