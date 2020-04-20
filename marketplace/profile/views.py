@@ -1,7 +1,7 @@
 
 from django.shortcuts import render,get_object_or_404
 from django.contrib.auth.models import User
-from .models import Product,ShippingAddress,Basket,OrderHistory
+from .models import Product,ShippingAddress,Basket,OrderHistory,ItemBasket
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
 from django.core.exceptions import ObjectDoesNotExist
@@ -69,10 +69,30 @@ def delete_item(request,item_id):
     return render(request,'profile/profile.html',{'items': item,'seller':request.user.username})
 
 @login_required
-def add_to_basket(request,item_id,num):
+def add_to_basket(request,item_id):
     prod = get_object_or_404(Product,pk=item_id)
-    basket = get_object_or_404(Basket,owner=request.user.id)
-    basket.items.add(prod)
+    try:
+        basket = Basket.objects.get(owner=request.user.id)
+    except ObjectDoesNotExist:
+        basket = Basket(owner=request.user)
+        basket.save()
+    if request.method=='POST':
+        form = forms.AddToBasket(request.POST)
+        if form.is_valid():
+            ib = form.save(commit=False)
+            ib.basket = basket
+            ib.item = prod
+            ib.save()
+
+            #reduce one item from its inventory
+            prod.inventory = prod.inventory - ib.count
+            prod.save()
+
+            #add price to basket
+            basket.totalAmount += prod.price*ib.count
+            basket.save()
+
+    return render(request,'profile/product_detail.html',{'item': prod})
 
 @login_required
 def view_basket(request):
@@ -81,24 +101,37 @@ def view_basket(request):
     except ObjectDoesNotExist:
         basket = Basket(owner=request.user)
         basket.save()
-    items = basket.items.all()
-    totalamount = 0
-    for item in items:
-        totalamount += item.price
-
-    return render(request,'profile/basket.html',{'items':items,'total':totalamount})
+    items = ItemBasket.objects.filter(basket=basket)
+   # totalamount = 0
+   # for item in items:
+   #     totalamount += item.item.price*item.count
+   # basket.totalAmount = totalamount
+   # basket.save()
+    return render(request,'profile/basket.html',{'items':items,'total':basket.totalAmount})
 
 @login_required
 def remove_from_basket(request,item_id):
     basket = get_object_or_404(Basket, owner=request.user.id)
     item = get_object_or_404(Product,pk=item_id)
-    basket.items.remove(item)
-    items = basket.items.all()
-    for item in items:
-        totalamount = 0
-        totalamount += item.price
 
-    return render(request, 'profile/cart.html', {'items': items, 'total': totalamount})
+    ib = ItemBasket.objects.get(basket=basket,item=item)
+    #add back into inventory
+    item.inventory = item.inventory + ib.count
+    item.save()
+
+    #recalculate total amount
+    basket.totalAmount -= item.price*ib.count
+    basket.save()
+
+    #delete item from basket
+    ib.delete()
+    items = ItemBasket.objects.filter(basket=basket)
+   # totalamount = 0
+   # for item in items:
+   #     totalamount += item.item.price*item.count
+   # basket.totalAmount -= totalamount
+   # basket.save()
+    return render(request, 'profile/basket.html', {'items': items, 'total': basket.totalamount})
 
 
 

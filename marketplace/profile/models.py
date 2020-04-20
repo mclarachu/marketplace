@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from django.core.validators import MaxValueValidator
 
 # Create your models here.
 def validate_price(value):
@@ -25,10 +26,18 @@ class Product(models.Model):
 
 class Basket(models.Model):
     owner = models.ForeignKey(User,on_delete=models.CASCADE)
-    items = models.ManyToManyField(Product)
+    totalAmount=models.PositiveIntegerField(default=0)
 
     def __str__(self):
-        return self.user.username + ' - ' + self.name
+        return self.owner.username
+
+class ItemBasket(models.Model):
+    basket = models.ForeignKey(Basket,on_delete=models.CASCADE)
+    item = models.ForeignKey(Product,on_delete=models.CASCADE)
+    count = models.PositiveIntegerField()
+
+    def __str__(self):
+        return self.basket.owner.username +' : ' + self.item.name
 
 class ShippingAddress(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -41,7 +50,7 @@ class ShippingAddress(models.Model):
     phone_num = models.PositiveIntegerField()
 
     def __str__(self):
-        return self.id + ' - ' + self.user.username
+        return self.user.username
 
 class OrderHistory(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -50,4 +59,4 @@ class OrderHistory(models.Model):
     total_payment = models.DecimalField(max_digits=40,decimal_places=2)
 
     def __str__(self):
-        return self.id + ' - ' + self.user.username
+        return self.user.username

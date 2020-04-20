@@ -3,7 +3,19 @@
 <p>Item name: {{item.name}}</p>
 <div class="product"><img src="{{item.image.url}}"/></div>
 <p>Price : ${{item.price}}</p>
-<p><a href="{% url 'account:profile' item.seller.id %}"></a>Seller : {{item.seller.username}}</p>
+Seller : <a href="{% url 'account:profile' item.seller.id %}">{{item.seller.username}}</a>
 <p>Description: {{item.description}}</p>
-<p>Availability : {{item.inventory}}</p>
+{% if item.inventory > 0 %}
+<p>In stock : {{item.inventory}}</p>
+{% if item.seller != request.user %}
+<form action="{% url 'account:add_to_basket' item.id %}" method="POST">
+    {% csrf_token %}
+    <input type="number" min="1" max="{{item.inventory}}" name="count" style="width: 40px"/>
+    <input type="submit" value="Add to basket"/>
+    {{form.count.errors}}
+</form>
+{% endif %}
+{% else %}
+<p>In stock: Not available</p>
+{% endif %}
 {% endblock %}

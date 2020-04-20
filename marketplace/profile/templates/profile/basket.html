@@ -2,15 +2,26 @@
 {% block content %}
 <h1>YOUR CART</h1>
 {% if items %}
-<ul>
+<table>
+    <thead>
+    <tr>
+        <th>Item</th>
+        <th>Price</th>
+        <th>Amount</th>
+    </tr>
+    </thead>
+    <tbody>
     {% for item in items %}
-    <li>
-        <a href="{% url 'account:product_detail' item.id %}">Item: {{item.name}} </a>
-        Price: {{item.price}}
-    </li>
+    <tr>
+        <td><a href="{% url 'account:product_detail' item.item.id %}">{{item.item.name}}</a></td>
+        <td>${{item.item.price}}</td>
+        <td>{{item.count}}</td>
+        <td class="noBorder"><a href="{% url 'account:remove_from_basket' item.item.id %}">remove</a></td>
+    </tr>
     {% endfor %}
-    TOTAL: {{total}}
-</ul>
+    </tbody>
+</table>
+<p><strong>Total: </strong> ${{total}}</p>
 {% else %}
 Oh MEOWW! You dont have anything in your basket!
 {% endif %}

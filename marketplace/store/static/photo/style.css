@@ -17,3 +17,13 @@
  height: auto;
  width: 350px;
 }
+
+th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+    padding: 10px;
+}
+
+.noBorder {
+    border:none;
+}

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.models import User
@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from . import forms
-from profile.models import Basket
+from profile.models import Basket,ItemBasket
 
 
 # Create your views here.
@@ -25,7 +25,7 @@ def signup(request):
                 )
 
                 #Create a basket for user
-                newBasket = Basket(owner = user.id)
+                newBasket = Basket(owner = request.user)
 
                 return HttpResponseRedirect(reverse('login'))
             except IntegrityError:
@@ -57,5 +57,25 @@ def do_login(request):
 
 
 def do_logout(request):
+
+    try:
+        basket = Basket.objects.get(owner=request.user.id)
+    except ObjectDoesNotExist:
+        basket = Basket(owner=request.user)
+        basket.save()
+
+    #get all items reference
+    items = ItemBasket.objects.filter(basket=basket)
+
+    #add back to the item's inventory
+    for item in items:
+        item.item.inventory = item.item.inventory + item.count
+        item.item.save()
+        items.delete()
+
+    #reset basket
+    basket.totalAmount = 0
+    basket.save()
+
     logout(request)
     return HttpResponseRedirect(reverse('store:index'))

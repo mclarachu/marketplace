@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from django.core.validators import MinValueValidator
-from .models import Product, ShippingAddress,Basket
+from .models import Product, ShippingAddress, ItemBasket
 
 class AddressForm(ModelForm):
     class Meta:
@@ -15,5 +15,5 @@ class ProductForm(ModelForm):
 
 class AddToBasket(ModelForm):
     class Meta:
-        model = Basket
-        fields = ['owner','items']
+        model = ItemBasket
+        fields =['count']

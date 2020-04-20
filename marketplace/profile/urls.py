@@ -4,9 +4,11 @@ app_name='account'
 urlpatterns = [
 
     path('<int:seller_id>',views.profile,name='profile'),
-    path('product/<int:prod_id>',views.product_detail,name='product_detail'),
+    path('<int:prod_id>/product/',views.product_detail,name='product_detail'),
     path('add_product',views.add_product,name='add_product'),
     path('add_address',views.add_address,name='add_address'),
     path('account', views.account, name='account'),
-    path('basket',views.view_basket,name='basket')
+    path('basket',views.view_basket,name='basket'),
+    path('<int:item_id>/addToBasket/',views.add_to_basket,name='add_to_basket'),
+    path('<int:item_id>/removeBasket/',views.remove_from_basket,name='remove_from_basket')
 ]

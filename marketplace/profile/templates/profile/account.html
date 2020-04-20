@@ -14,9 +14,8 @@
 <div>{{address.country}}</div>
 <div>Contact number:{{address.phone_num}}</div>
     {% endfor %}
-    {% else %}
-<a href="{% url 'account:add_address' %}">Add an address</a>
     {% endif %}
+<a href="{% url 'account:add_address' %}">Add an address</a>
 </p>
 Changing password.
 add profile image.
