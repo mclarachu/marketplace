@@ -1,9 +1,9 @@
-h2.index {
+.index {
  height: 300px;
  width: 300px;
  overflow: hidden;
 }
-header img {
+.index img {
  height: auto;
  width: 300px;
 }
