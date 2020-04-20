@@ -5,16 +5,6 @@ html {
     scroll-behavior: smooth;
 }
 
-.index {
- height: 300px;
- width: 300px;
- overflow: hidden;
-}
-.index img {
- height: auto;
- width: 300px;
-}
-
 .product {
  height: 400px;
  width: 350px;
@@ -23,6 +13,7 @@ html {
 .product img {
  height: auto;
  width: 350px;
+
 }
 
 th, td {
@@ -71,21 +62,31 @@ a:hover:after {
     background-repeat: repeat-x;
     background-image: url("rose2.gif");
 }
+.allPosts {
+    background-color: lavender;
+    margin: auto;
+    max-width: 800px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.posts {
+    margin: 0px auto;
+    width: 500px;
+    min-width: 50%;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom: 25px;
+    vertical-align: center;
 
-.cposts {
-    border-image:url("heart.gif") 30 round;
-    border: 10px solid transparent;
-    padding: 15px;
+}
+.posts img{
+    height: auto;
+    max-width: 200px;
+    vertical-align: middle;
 }
 
-.posts {
-    font-size: 20px;
-    padding: 0px 0px;
-    margin: auto;
-
-    max-width: 500px;
+.postContent {
+    float: right;
     text-align: center;
-    background-color: #D3E7E9;
-    overflow-wrap: break-word;
-    overflow-x: auto;
+    padding: 30px 30px;
 }
