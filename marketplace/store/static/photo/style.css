@@ -70,6 +70,10 @@ a:hover:after {
     padding-left: 20px;
 }
 
+.itemBlock {
+    padding-left: 30px;
+}
+
 .shippingAddress {
     padding-left: 20px;
     color: seagreen;

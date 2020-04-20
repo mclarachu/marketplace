@@ -1,7 +1,7 @@
 
 {% extends "store/base.html" %}
 {% block content %}
-<h1 style="color:mediumorchid; text-align: center;"> MARKETPLACE</h1>
+<h1 style="text-align: center;"> MARKETPLACE</h1>
 {% if all_products %}
 <div class="allPosts">
         {% for product in all_products %}
@@ -9,7 +9,7 @@
                 <img src="{{product.image.url}}" alt="{{product.name}}"/>
                 <div class="postContent">
                     <a  style="color: mediumorchid;" href="{% url 'account:product_detail' product.id %}">Item: {{product.name}}</a>
-                    <p  style="color: mediumaquamarine;">Price: {{product.price}}</p>
+                    <p  style="color: mediumaquamarine;">Price: ${{product.price}}</p>
                     <p  style="color: mediumaquamarine;">Seller: {{product.seller}}</p>
                 </div>
             </div><p></p>
