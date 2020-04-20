@@ -1,11 +1,7 @@
 
 {% extends "store/base.html" %}
 {% block content %}
-
-<marquee width="100%" direction="right" scrollamount="12" >
-    <h4 style="text-align: center; color: tomato">CURRENT DELIVERY TIMES DELAYED BY 6-8 DAYS!</h4>
-</marquee>
-
+<h1 style="color:mediumorchid; text-align: center;"> MARKETPLACE</h1>
 {% if all_products %}
 <div class="allPosts">
         {% for product in all_products %}
@@ -14,7 +10,7 @@
                 <div class="postContent">
                     <a  style="color: mediumorchid;" href="{% url 'account:product_detail' product.id %}">Item: {{product.name}}</a>
                     <p  style="color: mediumaquamarine;">Price: {{product.price}}</p>
-                    <p  style="color: mediumaquamarine;">Seller {{product.seller}}</p>
+                    <p  style="color: mediumaquamarine;">Seller: {{product.seller}}</p>
                 </div>
             </div><p></p>
         {% endfor %}
@@ -26,3 +22,12 @@
 
 {% endif %}
 {% endblock %}
+
+
+
+
+
+
+
+
+

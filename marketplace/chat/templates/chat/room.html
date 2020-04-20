@@ -1,8 +1,17 @@
 {% extends "store/base.html" %}
 {% block content %}
-<textarea id="chat-log" cols="100" rows="20"></textarea><br/>
-<input id="chat-message-input" type="text" size="100"/><br/>
-<input id="chat-message-submit" type="button" value="Send"/>
+<h2 style="color: mediumorchid;"> Chatting in room: {{room_name}}</h2>
+<h4 style="color: darkseagreen;"> Share the room name to invite cat friends! COOL!!</h4>
+
+<div class="block">
+    <textarea id="chat-log" cols="100" rows="20"></textarea><br/>
+    <input id="chat-message-input" type="text" size="100"/><br/>
+    <input id="chat-message-submit" style="color: palevioletred;" type="button" value="SEND"/>
+</div>
+<br>
+<br>
+
+
 {% endblock %}
 {% block script %}
 <script>

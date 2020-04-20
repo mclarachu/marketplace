@@ -62,6 +62,13 @@ a:hover:after {
     background-repeat: repeat-x;
     background-image: url("rose2.gif");
 }
+
+.block {
+    background-color: lavender;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
 .allPosts {
     background-color: lavender;
     margin: auto;
