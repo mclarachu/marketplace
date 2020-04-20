@@ -1,6 +1,7 @@
 {% extends "store/base.html" %}
 {% block content %}
 <h1>Login</h1>
+<div class="block">
 <div>{{ form.non_field_errors }}</div>
 <form action="" method="post">
     {% csrf_token %}
@@ -12,7 +13,10 @@
       {{ form.password.errors }}
     </p>
     <p>
-      <input type="submit" value="Login" />
+      <input style="color: palevioletred;" type="submit" value="Login" />
     </p>
 </form>
+</div>
+<br>
+
 {% endblock %}

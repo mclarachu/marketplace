@@ -1,24 +1,34 @@
 {% extends "store/base.html" %}
 {% block content %}
-<title>ACCOUNT DETAILS:</title>
+
+<h1>Welcome to your profile!</h1>
+<h3>Feel free to edit your account as needed.</h3>
+
+<div class="block">
 <p>Username: {{request.user.username}}</p>
 <p>Email: {{request.user.email}}</p>
 <p>Full name: {{request.user.get_full_name}}</p>
+    <div>Contact number:{{address.phone_num}}</div>
 <p>Shipping Address(es): </p>
 <p>
     {% if addresses %}
     {% for address in addresses %}
-<div>{{address.street1}}</div>
-<div>{{address.street2}}</div>
-<div>{{address.postal_code}} {{address.city}}, {{address.province}}</div>
-<div>{{address.country}}</div>
-<div>Contact number:{{address.phone_num}}</div>
+<div class="shippingAddress">
+    {{address.street1}}
+    <br> {{address.street2}}
+    <br>{{address.postal_code}} {{address.city}}, {{address.province}}
+    <br>{{address.country}}
+</div>
     {% endfor %}
     {% endif %}
-<a href="{% url 'account:add_address' %}">Add an address</a>
+<br>
+    <form action="{% url 'account:add_address' %}">
+        <input type="submit" value="Add an address" />
+    </form>
 </p>
 Changing password.
 add profile image.
 change username and stuff like that
 <p>will do soon</p>
+</div>
 {% endblock %}

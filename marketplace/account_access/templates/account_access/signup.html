@@ -1,6 +1,7 @@
 {% extends "store/base.html" %}
 {% block content %}
 <h1>Sign up with us today!</h1>
+<div class="block">
 <form action="" method="post">
     {% csrf_token %}
     <p>
@@ -31,4 +32,5 @@
         <input type="submit" value="Create"/>
     </p>
 </form>
+</div>
 {% endblock %}

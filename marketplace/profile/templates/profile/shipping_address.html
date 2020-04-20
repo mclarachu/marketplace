@@ -1,6 +1,7 @@
 {% extends "store/base.html" %}
 {% block content %}
 <h1>Add a new shipping address</h1>
+<div class="block">
 <form action="" method="POST">
     {% csrf_token %}
     <p>
@@ -38,4 +39,5 @@
         <input type="submit" value="Add Address"/>
     </p>
 </form>
+</div>
 {% endblock %}

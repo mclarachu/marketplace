@@ -67,6 +67,12 @@ a:hover:after {
     background-color: lavender;
     padding-top: 20px;
     padding-bottom: 20px;
+    padding-left: 20px;
+}
+
+.shippingAddress {
+    padding-left: 20px;
+    color: seagreen;
 }
 
 .allPosts {
@@ -96,4 +102,12 @@ a:hover:after {
     float: right;
     text-align: center;
     padding: 30px 30px;
+}
+
+h1,h2 {
+    color: mediumorchid;
+}
+
+h3,h4 {
+    color: darkseagreen;
 }
