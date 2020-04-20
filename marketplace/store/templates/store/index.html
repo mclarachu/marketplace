@@ -3,20 +3,21 @@
 {% block content %}
 
 <marquee width="100%" direction="right" scrollamount="12">
-    <h4 style="text-align: center;">CURRENT DELIVERY TIMES DELAYED BY 6-8 DAYS!</h4>
+    <h4 style="text-align: center; color: tomato">CURRENT DELIVERY TIMES DELAYED BY 6-8 DAYS!</h4>
 </marquee>
 
-
 {% if all_products %}
-    <ul>
+<div class="cposts">
         {% for product in all_products %}
-        <li>
+            <div class="posts">
             <a href="{% url 'account:product_detail' product.id %}">Item: {{product.name}}</a>
             <p class="testColor">Seller: {{product.seller}}</p>
             <div class="index"><img src="{{product.image.url}}" alt="{{product.name}}"/></div>
-        </li>
+            </div>
         {% endfor %}
-    </ul>
+</div>
+
+
 {% else %}
    <p>OOPPSYY, WE DONT HAVE ANYTHING TO SELL. HEHE ^_^</p>
 

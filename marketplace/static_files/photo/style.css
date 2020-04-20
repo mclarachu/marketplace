@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Cardo&display=swap');
+
+html {
+    height: 100%;
+    scroll-behavior: smooth;
+}
+
 .index {
  height: 300px;
  width: 300px;
@@ -18,15 +25,67 @@
  width: 350px;
 }
 
-h2 {
- color: purple;
+th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+    padding: 10px;
 }
 
-/*a.navigation-link {*/
-/* padding: 0px 10px;*/
-/* word-wrap: normal;*/
-/* display: inline-block;*/
-/*}*/
+.noBorder {
+    border:none;
+}
 
+a {
+    font-weight: bold;
+    color: plum;
+    text-decoration: none;
+    position: relative;
+    font-size:15px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
 
+a:after {
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    height: 1px;
+    left: 50%;
+    position: absolute;
+    background: darkslategray;
 
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+}
+
+a:hover {
+    color: palevioletred;
+}
+a:hover:after {
+    width: 100%;
+    left: 0;
+}
+
+.roses {
+    background-position-y: 10px;
+    background-repeat: repeat-x;
+    background-image: url("rose2.gif");
+}
+
+.cposts {
+    border-image:url("heart.gif") 30 round;
+    border: 10px solid transparent;
+    padding: 15px;
+}
+
+.posts {
+    font-size: 20px;
+    padding: 0px 0px;
+    margin: auto;
+
+    max-width: 500px;
+    text-align: center;
+    background-color: #D3E7E9;
+    overflow-wrap: break-word;
+    overflow-x: auto;
+}

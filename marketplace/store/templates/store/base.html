@@ -5,13 +5,12 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" type="text/css" href="{% static 'photo/style.css' %}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <title>Artisanal Feline Crafts</title>
 </head>
-<body>
+<body id="jumpToTop">
 
-<h2 class="index"> testing CSS!! </h2>
-
-<header class="header" style="text-align: center;">
+<header style="text-align: center;">
     <img src="{% static 'photo/banner.jpg' %}" />
     <nav>
         <a href="{% url 'store:index' %}">Market</a>
@@ -26,13 +25,15 @@
         <a href="{% url 'login' %}">Login</a>
         {% endif %}
     </nav>
+    <div class="roses" style="height: 60px"></div>
 </header>
+
 
 {% block content %}
 {% endblock %}
 
-<footer>
-    &copy; Footer is here
+<footer style="text-align: center;" >
+    <a href="#jumpToTop"><i class="material-icons" style="font-size:60px; color: plum; padding-bottom: 20px">expand_less</i></a>
 </footer>
 </body>
 {% block script %}
