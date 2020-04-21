@@ -1,0 +1,30 @@
+{% extends "store/base.html" %}
+{% block content %}
+{% if orders %}
+{% for order in orders %}
+<p>Order id: {{order.id}}</p>
+<p>Order made on: {{order.dateTime}}</p>
+<table>
+    <thead>
+    <tr>
+        <th>Item</th>
+        <th>Price</th>
+        <th>Amount</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in items.(order.id) %}
+    <tr>
+        <td>{{item.item.name}}</td>
+        <td>${{item.item.price}}</td>
+        <td>{{item.count}}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<p>Total payment : {{order.total_payment}}</p>
+{% endfor %}
+{% else %}
+You have not made any orders :(
+{% endif %}
+{% endblock %}
