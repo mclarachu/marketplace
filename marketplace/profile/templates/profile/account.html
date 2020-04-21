@@ -8,27 +8,31 @@
 <p>Username: {{request.user.username}}</p>
 <p>Email: {{request.user.email}}</p>
 <p>Full name: {{request.user.get_full_name}}</p>
-    <div>Contact number:{{address.phone_num}}</div>
-<p>Shipping Address(es): </p>
-<p>
+    <p>Contact number:{{address.phone_num}}</p>
+
     {% if addresses %}
+    <div class="addressContainer">
+        <p>Shipping Address(es):</p>
     {% for address in addresses %}
-<div class="shippingAddress">
-    {{address.street1}}
-    <br> {{address.street2}}
-    <br>{{address.postal_code}} {{address.city}}, {{address.province}}
-    <br>{{address.country}}
-</div>
+        <div class="addressBlock">
+            {{address.street1}}
+            <br> {{address.street2}}
+            <br>{{address.postal_code}} {{address.city}}, {{address.province}}
+            <br>{{address.country}}
+            <br>━━━━━━━━━━✫・*。
+        </div>
     {% endfor %}
+    </div>
     {% endif %}
-<br>
+    <div style="padding-top: 10px;">
     <form action="{% url 'account:add_address' %}">
         <input type="submit" value="Add an address" />
     </form>
-</p>
+    </div>
+    <br>
 Changing password.
 add profile image.
 change username and stuff like that
-<p>will do soon</p>
 </div>
 {% endblock %}
+<br>
