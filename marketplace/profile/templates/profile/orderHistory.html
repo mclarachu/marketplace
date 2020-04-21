@@ -13,7 +13,7 @@
     </tr>
     </thead>
     <tbody>
-    {% for item in items.(order.id) %}
+    {% for item in items.order.id %}
     <tr>
         <td>{{item.item.name}}</td>
         <td>${{item.item.price}}</td>
