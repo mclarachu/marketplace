@@ -1,9 +1,10 @@
 {% extends "store/base.html" %}
 {% block content %}
-{% if orders %}
-{% for order in orders %}
-<p>Order id: {{order.id}}</p>
-<p>Order made on: {{order.dateTime}}</p>
+{% if array %}
+{% for current in array %}
+<h1>Your Order History</h1>
+<h3>Order id: {{current.order.id}}</h3>
+<p>Order made on: {{current.order.dateTime}}</p>
 <table>
     <thead>
     <tr>
@@ -13,7 +14,7 @@
     </tr>
     </thead>
     <tbody>
-    {% for item in items.order.id %}
+    {% for item in current.items %}
     <tr>
         <td>{{item.item.name}}</td>
         <td>${{item.item.price}}</td>
@@ -22,7 +23,14 @@
     {% endfor %}
     </tbody>
 </table>
-<p>Total payment : {{order.total_payment}}</p>
+<p>Total payment : {{current.order.total_payment}}</p>
+<p>Shipped to : </p>
+<div>
+    {{current.order.shipped.street1}}
+    <br> {{current.order.shipped.street2}}
+    <br>{{current.order.shipped.postal_code}} {{current.order.shipped.city}}, {{current.order.shipped.province}}
+    <br>{{current.order.shipped.country}}
+</div>
 {% endfor %}
 {% else %}
 You have not made any orders :(

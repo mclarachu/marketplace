@@ -175,10 +175,12 @@ def orderSummary(request,order_id):
     return render(request,'profile/orderSummary.html', {'order':order,'list':list})
 
 def orderHistory(request):
-    orders = OrderHistory.objects.filter(user=request.user.id).order_by(id)
-    items = []
-    index
+    orders = OrderHistory.objects.filter(user=request.user).order_by('dateTime')
+    array = []
     for order in orders:
-        items.append(ItemOrder.objects.filter(order=order))
-    return render(request,'profile/orderHistory.html',{'orders':orders,'items':items})
-
+        new = {}
+        new['items'] = ItemOrder.objects.filter(order=order)
+        new['order'] = order
+        array.append(new)
+    print(array)
+    return render(request,'profile/orderHistory.html', {'array' : array})
