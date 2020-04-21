@@ -6,7 +6,7 @@
 <div class="allPosts">
         {% for product in all_products %}
             <div class="posts">
-                <img src="{{product.image.url}}" alt="{{product.name}}"/>
+                    <img src="{{product.image.url}}" alt="{{product.name}}"/>
                 <div class="postContent">
                     <a  style="color: mediumorchid;" href="{% url 'account:product_detail' product.id %}">Item: {{product.name}}</a>
                     <p  style="color: mediumaquamarine;">Price: ${{product.price}}</p>

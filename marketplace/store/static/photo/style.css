@@ -5,21 +5,22 @@ html {
     scroll-behavior: smooth;
 }
 
-.product {
- height: 400px;
- width: 350px;
- overflow: hidden;
-}
-.product img {
- height: auto;
- width: 350px;
+/*.product {*/
+/* height: 400px;*/
+/* width: 350px;*/
+/* overflow: hidden;*/
+/*}*/
+/*.product img {*/
+/* height: auto;*/
+/* width: 350px;*/
 
-}
+/*}*/
 
 th, td {
   border: 1px solid black;
   border-collapse: collapse;
     padding: 10px;
+    text-align: center;
 }
 
 .noBorder {
@@ -75,9 +76,34 @@ a:hover:after {
     padding-bottom: 15px;
 }
 
-.shippingAddress {
+.addressContainer {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.addressBlock {
     padding-left: 20px;
-    color: seagreen;
+    padding-right: 40px;
+    padding-bottom: 10px;
+    color: mediumslateblue;
+    float: left;
+}
+
+.productContainer {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: inline-block;
+}
+
+.productBlock {
+    padding-left: 20px;
+    padding-right: 40px;
+    padding-bottom: 10px;
+    color: mediumslateblue;
+    float: right;
+    padding: 60px 50px;
+
 }
 
 .allPosts {
@@ -107,6 +133,7 @@ a:hover:after {
     float: right;
     text-align: center;
     padding: 30px 30px;
+    display: inline-block;
 }
 
 h1,h2 {
@@ -115,4 +142,14 @@ h1,h2 {
 
 h3,h4 {
     color: darkseagreen;
+}
+
+.itemSizing {
+    height: auto;
+    max-width: 300px;
+    background-color: white;
+}
+.itemBorder {
+    border: 15px solid transparent;
+    border-image: url("f1.jpg") 30 round;
 }

@@ -1,6 +1,8 @@
 {% extends "store/base.html" %}
 {% block content %}
-<h1>SUMMARY</h1>
+<h1>CHECKOUT OUT</h1>
+<h2 style="color: plum"> Wow! You're close to ordering!!</h2>
+<div class="block">
 {% if list %}
 <table>
     <thead>
@@ -21,25 +23,35 @@
     </tbody>
 </table>
 <p><strong>Total: </strong> ${{total}}</p>
-<h3>Shipping Address(es)</h3>
-{% if addresses %}
-<form action="{% url 'account:checkout' %}" method="post">
-    {% csrf_token %}
-    {% for address in addresses %}
-    <input type="radio" name="addressChoice" value="{{address.id}}" required/>
-    <div>{{address.street1}}</div>
-    <div>{{address.street2}}</div>
-    <div>{{address.postal_code}} {{address.city}}, {{address.province}}</div>
-    <div>{{address.country}}</div>
-    <div>Contact number:{{address.phone_num}}</div>
-{% endfor %}
-{% endif %}
-    <a href="{% url 'account:add_address2' %}">Add an address</a>
-    <h3>Payment Option</h3>
+<h3>Choose Your Shipping Address</h3>
+    {% if addresses %}
+    <div class="addressContainer">
+        <form action="{% url 'account:checkout' %}" method="post">
+            {% csrf_token %}
+        {% for address in addresses %}
+        <div class="addressBlock">
+            <input type="radio" name="addressChoice" value="{{address.id}}" required/>
+            <br>{{address.street1}}
+            <br> {{address.street2}}
+            <br>{{address.postal_code}} {{address.city}}, {{address.province}}
+            <br>{{address.country}}
+            <br>━━━━━━━━━━✫・*。
+        </div>
+        {% endfor %}
+
+    </div>
+    {% endif %}
+    <div>
+        <a href="{% url 'account:add_address2' %}">Need to add another address?</a>
+    </div>
+
+    <h3>Method of Payment</h3>
     <input type="radio" name="payment_option" value="C" required/> Credit Card
     <input type="radio" name="payment_option" value="P" required/> PayPal
     <h6>Payment functionality not implemented</h6>
-    <input type="submit" value="Finish checkout"/>
+    <input type="submit" style="color: tomato" value="CHECKOUT!!"/>
 </form>
 {% endif %}
+
+</div>
 {% endblock %}

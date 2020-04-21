@@ -22,14 +22,14 @@
         <td>{{item.count}}</td>
         <td class="noBorder"><form action="{% url 'account:remove_from_basket' item.item.id %}" method="post">
             {% csrf_token %}
-            <input type="submit" value="remove"/>
+            <input type="submit" style="color: tomato;" value="REMOVE >:("/>
         </form></td>
     </tr>
     {% endfor %}
     </tbody>
 </table>
 <p><strong>Total: </strong> ${{total}}</p>
-<button onclick="document.location = 'checkout'">Checkout</button></br>
+<button onclick="document.location = 'checkout'" style="color:palevioletred;">Checkout</button></br>
 {% else %}
 Oh MEOWW! You dont have anything in your basket!
 {% endif %}
