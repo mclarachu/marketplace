@@ -1,9 +1,11 @@
 {% extends "store/base.html" %}
 {% block content %}
-Yay! Your order has been placed.
+
 <h1>ORDER SUMMARY</h1>
+<h2 style="color: tomato">Yay! Your order has been placed.</h2>
+<div class="block">
 {% if order %}
-<p>Order id: {{order.id}}</p>
+<h3>Order ID: {{order.id}}</h3>
 <table>
     <thead>
     <tr>
@@ -24,13 +26,21 @@ Yay! Your order has been placed.
 </table>
 <p>Total payment : {{order.total_payment}}</p>
 <h3>Shipped to:</h3>
-<div>{{order.shipped.street1}}</div>
-<div>{{order.shipped.street2}}</div>
-<div>{{order.shipped.postal_code}} {{order.shipped.city}}, {{order.shipped.province}}</div>
-<div>{{order.shipped.country}}</div>
 
-<div>Contact number:{{order.shipped.phone_num}}</div>
+    <div class="addressContainer">
+        <div class="addressBlock">
+            ━━━━━━━━━━━━✫・*。
+            <br>{{order.shipped.street1}}
+            <br>{{order.shipped.street2}}
+            <br>{{order.shipped.postal_code}} {{order.shipped.city}}, {{order.shipped.province}}
+            <br>{{order.shipped.country}}
+            <br>
+            <br>Contact number:{{order.shipped.phone_num}}
+            <br>━━━━━━━━━━━━✫・*。
+        </div>
+    </div>
 
-<h4>Thank you for being our valued customer ^_^</h4>
-{% endif %}
+<h4 style="color: palevioletred">Thank you for being our valued customer ^_^</h4>
+{% endif %}</div>
 {% endblock %}
+<br>

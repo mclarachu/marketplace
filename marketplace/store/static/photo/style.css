@@ -20,6 +20,7 @@ th, td {
   border: 1px solid black;
   border-collapse: collapse;
     padding: 10px;
+    text-align: center;
 }
 
 .noBorder {
@@ -76,8 +77,8 @@ a:hover:after {
 }
 
 .addressContainer {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     display: inline-block;
 }
 
@@ -104,8 +105,6 @@ a:hover:after {
     padding: 60px 50px;
 
 }
-
-
 
 .allPosts {
     background-color: lavender;
