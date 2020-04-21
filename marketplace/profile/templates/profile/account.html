@@ -38,24 +38,3 @@
 </div>
 {% endblock %}
 <br>
-{% block script %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> <!-- Import Jquery Here-->
-<script type="text/javascript">
-    function changeAvail(event){
-        console.log("changed");
-        e.preventDefault()
-        $.ajax({
-          type: 'GET',
-          url: "toggle",
-          data: {'is_available': this.value, 'id': '{{request.user}}' },
-            success: function(response){
-            },
-            error: function(response){
-              alert("error");
-            }
-        })
-
-    }
-
-</script>
-{% endblock %}
