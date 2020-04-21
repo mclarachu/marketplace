@@ -22,7 +22,7 @@
         <td>{{item.count}}</td>
         <td class="noBorder"><form action="{% url 'account:remove_from_basket' item.item.id %}" method="post">
             {% csrf_token %}
-            <input type="submit" style="color: tomato;" value="REMOVE >:("/>
+            <input type="submit" style="color: tomato;" value="REMOVE"/>
         </form></td>
     </tr>
     {% endfor %}

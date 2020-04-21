@@ -5,10 +5,14 @@
 <h3>Feel free to edit your account as needed.</h3>
 
 <div class="block">
-<p>Username: {{request.user.username}}</p>
-<p>Email: {{request.user.email}}</p>
-<p>Full name: {{request.user.get_full_name}}</p>
-    <p>Contact number:{{address.phone_num}}</p>
+    <a href="{% url 'account:orderHistory' %}">View your order history</a>
+    <p>
+    <div class="orderBlock">
+        Username: {{request.user.username}}
+        <br>Email: {{request.user.email}}
+        <br>Full name: {{request.user.get_full_name}}
+        <br> Contact number: {{address.phone_num}}
+    </div>
 
     {% if addresses %}
     <div class="addressContainer">
@@ -30,7 +34,7 @@
     </form>
     </div>
     <br>
-    <p><a href="{% url 'account:orderHistory' %}">View your order history</a></p>
+
 Changing password.
 add profile image.
 change username and stuff like that
