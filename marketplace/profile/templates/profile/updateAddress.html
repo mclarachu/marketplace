@@ -1,0 +1,40 @@
+{% extends "store/base.html" %}
+{% block content %}
+<h1>Add a new shipping address</h1>
+<div class="block">
+<form action="" method="POST">
+    {% csrf_token %}
+    <p>
+        Street address:
+        <div>
+            <input type="text" name="street1" value="{{address.street1}}" placeholder="Street and number, P.O. box,c/o"/>
+            {{form.street1.errors}}
+        </div>
+        <div>
+            <input type="text" name="street2" value="{{address.street2}}" placeholder="Apartment,suite,unit,building,floor,etc."/>
+            {{form.street2.errors}}
+        </div>
+    </p>
+    <p>
+        City : <input type="text" name="city" value="{{address.city}}"/>
+        {{form.city.errors}}
+    </p>
+    <p>
+        Province : <input type="text" name="province" value="{{address.province}}"/>
+        {{form.province.errors}}
+    </p>
+    <p>
+        Postal code : <input type="text" name="postal_code" value="{{address.postal_code}}"/>
+        {{form.postal_code.errors}}
+    </p>
+    <p>
+        Country : <input type="text" name="country" value="{{address.country}}"/>
+        {{form.country.errors}}
+    </p>
+    <p>
+        <input type="submit" value="Update Address"/>
+        <a href="{% url 'account:account'%}">Cancel</a>
+    </p>
+</form>
+</div>
+{% endblock %}
