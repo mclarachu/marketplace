@@ -3,15 +3,17 @@
 
 <h1>Welcome to your profile!</h1>
 <h3>Feel free to edit your account as needed.</h3>
-
-    <label>Available</label>
-    <label class="switch">
-        <input type="checkbox" id="checkbox" value="{{request.user.profile.is_available}}">
-        <span class="slider round"></span>
-    </label>
-
-
 <div class="block">
+    <div class="itemBlock" style="float: right">
+        <label style="color: mediumseagreen;">CHAT ROOM AVAILABILITY</label>
+        <br>
+        <br>
+        <label class="switch">
+            <input type="checkbox" id="checkbox" value="{{request.user.profile.is_available}}">
+            <span class="slider round"></span>
+        </label>
+    </div>
+    <br>
     <a href="{% url 'account:orderHistory' %}">View your order history</a>
     <p>
     <div class="orderBlock">

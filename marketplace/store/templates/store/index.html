@@ -12,15 +12,12 @@
                     <p  style="color: mediumaquamarine;">Price: ${{product.price}}</p>
                     <p  style="color: mediumaquamarine;">Seller: {{product.seller}}</p>
                 </div>
-                <p><a href="{% url 'chat:room' product.seller.username %}">Chat with the seller!</a></p>
-            </div><p></p>
+
+            </div>
         {% endfor %}
 </div>
-
-
 {% else %}
-   <p>OOPPSYY, WE DONT HAVE ANYTHING TO SELL. HEHE ^_^</p>
-
+<p>OOPPSYY, WE DONT HAVE ANYTHING TO SELL. HEHE ^_^</p>
 {% endif %}
 <br>
 {% endblock %}
