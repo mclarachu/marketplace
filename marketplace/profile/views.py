@@ -184,3 +184,13 @@ def orderHistory(request):
         array.append(new)
     print(array)
     return render(request,'profile/orderHistory.html', {'array' : array})
+
+def editProductDetails(request,item_id):
+    item = get_object_or_404(Product,pk=item_id)
+    if request.method == 'POST':
+        form = forms.ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            item = form.save(commit=False)
+            item.save()
+            return HttpResponseRedirect(reverse('account:product_detail',kwargs={'prod_id':item_id}))
+    return render(request, 'profile/add_product.html', {'item':item})

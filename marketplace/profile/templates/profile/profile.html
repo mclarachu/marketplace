@@ -2,6 +2,7 @@
 {% block content %}
 
 <h1 style="text-align: center;"> Welcome to {{seller.username}}'s store </h1>
+<div class="itemBlock"><a href="{% url 'chat:room' seller.username %}">Chat with me!</a></div>
 {% if request.user.username == seller.username  %}
 <div class="itemBlock"><button onclick="document.location = 'add_product'">Add new item!</button></div>
 
