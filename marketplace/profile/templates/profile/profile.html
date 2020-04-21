@@ -2,11 +2,7 @@
 {% block content %}
 
 <h1 style="text-align: center;"> Welcome to {{seller.username}}'s store </h1>
-{% if seller.profile.is_available %}
-    <div class="itemBlock"><a  style="color: mediumseagreen" href="{% url 'chat:room' seller.username %}">Chat with me!</a></div>
-{% else %}
-<div class="itemBlock" style="color: indianred">Seller's chat room is currently closed.</div>
-{% endif %}
+
 {% if request.user.username == seller.username  %}
 <div class="itemBlock"><button onclick="document.location = 'add_product'">Add new item!</button></div>
 

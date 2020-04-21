@@ -4,18 +4,7 @@
 <h1>Welcome to your profile!</h1>
 <h3>Feel free to edit your account as needed.</h3>
 <div class="block">
-    <div class="itemBlock" style="float: right">
-        <label style="color: mediumseagreen;">CHAT ROOM AVAILABILITY</label>
-        <br>
-        <br>
-        <label class="switch">
-            <input type="checkbox" id="checkbox" click="changeAvail(e)" value="{{request.user.profile.is_available}}"/>
-            <span class="slider round"></span>
-        </label>
 
-
-    </div>
-    <br>
     <a href="{% url 'account:orderHistory' %}">View your order history</a>
     <p>
     <div class="orderBlock">
@@ -46,10 +35,6 @@
     </form>
     </div>
     <br>
-
-Changing password.
-add profile image.
-change username and stuff like that
 </div>
 {% endblock %}
 <br>
@@ -71,7 +56,6 @@ change username and stuff like that
         })
 
     }
-
 
 </script>
 {% endblock %}
