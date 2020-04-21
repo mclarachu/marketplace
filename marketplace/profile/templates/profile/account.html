@@ -9,9 +9,11 @@
         <br>
         <br>
         <label class="switch">
-            <input type="checkbox" id="checkbox" value="{{request.user.profile.is_available}}">
+            <input type="checkbox" id="checkbox" click="changeAvail(e)" value="{{request.user.profile.is_available}}"/>
             <span class="slider round"></span>
         </label>
+
+
     </div>
     <br>
     <a href="{% url 'account:orderHistory' %}">View your order history</a>
@@ -54,14 +56,22 @@ change username and stuff like that
 {% block script %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> <!-- Import Jquery Here-->
 <script type="text/javascript">
-$(document).ready(function() {
-    $('#checkbox').change(function() {
-        $.post("{% url 'account:toggle' %}", {
-            id: '{{request.user.id}}',
-            is_available: this.checked,
-            csrfmiddlewaretoken: '{{ csrf_token }}'
-        });
-    });
-});
+    function changeAvail(event){
+        console.log("changed");
+        e.preventDefault()
+        $.ajax({
+          type: 'GET',
+          url: "toggle",
+          data: {'is_available': this.value, 'id': '{{request.user}}' },
+            success: function(response){
+            },
+            error: function(response){
+              alert("error");
+            }
+        })
+
+    }
+
+
 </script>
 {% endblock %}

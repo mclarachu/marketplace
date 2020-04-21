@@ -3,7 +3,6 @@
 <h1>Viewing item : {{item.name}} </h1>
 <h3>Info Page for this product. Message the seller if you're curious! </h3>
 
-
 <div class="block">
     <div class="productContainer">
         <img class="itemSizing itemBorder" src="{{item.image.url}}"/>
@@ -31,6 +30,7 @@
             <br>
             <br>
             <a href="{% url 'account:updateProduct' item.id %}">Edit Listing</a>
+            <a href="{% url 'account:deleteItem' item.id %}">Delete</a>
             {% endif %}
         </div>
     </div>
