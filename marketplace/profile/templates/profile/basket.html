@@ -1,6 +1,8 @@
 {% extends "store/base.html" %}
 {% block content %}
-<h1>YOUR CART</h1>
+<h1>What's in your basket?</h1>
+<h3> Check out the feline market for new items available!</h3>
+<div class="block">
 {% if items %}
 <table>
     <thead>
@@ -28,4 +30,7 @@
 {% else %}
 Oh MEOWW! You dont have anything in your basket!
 {% endif %}
+</div>
+<br>
+
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends "store/base.html" %}
 {% block content %}
 
-<h1> Welcome to {{seller.username}}'s store </h1>
+<h1 style="text-align: center;"> Welcome to {{seller.username}}'s store </h1>
 {% if request.user.is_authenticated %}
 <div class="itemBlock"><button onclick="document.location = 'add_product'">Add new item!</button></div>
 

@@ -71,7 +71,8 @@ a:hover:after {
 }
 
 .itemBlock {
-    padding-left: 30px;
+    text-align: center;
+    padding-bottom: 15px;
 }
 
 .shippingAddress {
