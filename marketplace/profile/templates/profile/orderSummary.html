@@ -1,0 +1,36 @@
+{% extends "store/base.html" %}
+{% block content %}
+Yay! Your order has been placed.
+<h1>ORDER SUMMARY</h1>
+{% if order %}
+<p>Order id: {{order.id}}</p>
+<table>
+    <thead>
+    <tr>
+        <th>Item</th>
+        <th>Price</th>
+        <th>Amount</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in list %}
+    <tr>
+        <td>{{item.item.name}}</td>
+        <td>${{item.item.price}}</td>
+        <td>{{item.count}}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<p>Total payment : {{order.total_payment}}</p>
+<h3>Shipped to:</h3>
+<div>{{order.shipped.street1}}</div>
+<div>{{order.shipped.street2}}</div>
+<div>{{order.shipped.postal_code}} {{order.shipped.city}}, {{order.shipped.province}}</div>
+<div>{{order.shipped.country}}</div>
+
+<div>Contact number:{{order.shipped.phone_num}}</div>
+
+<h4>Thank you for being our valued customer ^_^</h4>
+{% endif %}
+{% endblock %}
