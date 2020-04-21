@@ -153,3 +153,13 @@ h3,h4 {
     border: 15px solid transparent;
     border-image: url("f1.jpg") 30 round;
 }
+
+.orderBlock {
+    width: 250px;
+    height: auto;
+    background-color: lightcyan;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+
+}

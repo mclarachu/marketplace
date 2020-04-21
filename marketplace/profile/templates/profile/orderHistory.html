@@ -1,10 +1,11 @@
 {% extends "store/base.html" %}
-{% block content %}
+{% block content %}<h1>Your Order History</h1>
+<div class="block">
 {% if array %}
 {% for current in array %}
-<h1>Your Order History</h1>
-<h3>Order id: {{current.order.id}}</h3>
-<p>Order made on: {{current.order.dateTime}}</p>
+    <div class="orderBlock">
+<h3 >Order id: {{current.order.id}}</h3>
+<h4 style="color:rebeccapurple;">Order made on: {{current.order.dateTime}}</h4>
 <table>
     <thead>
     <tr>
@@ -23,16 +24,22 @@
     {% endfor %}
     </tbody>
 </table>
-<p>Total payment : {{current.order.total_payment}}</p>
-<p>Shipped to : </p>
-<div>
-    {{current.order.shipped.street1}}
-    <br> {{current.order.shipped.street2}}
-    <br>{{current.order.shipped.postal_code}} {{current.order.shipped.city}}, {{current.order.shipped.province}}
-    <br>{{current.order.shipped.country}}
-</div>
+<p>Total payment : ${{current.order.total_payment}}</p>
+<h3>Shipped to :</h3>
+    <div class="addressContainer">
+        <div class="addressBlock">
+            {{current.order.shipped.street1}}
+            <br>{{current.order.shipped.street2}}
+            <br>{{current.order.shipped.postal_code}} {{current.order.shipped.city}}, {{current.order.shipped.province}}
+            <br>{{current.order.shipped.country}}
+            <br>━━━━━━━━━━✫・*。
+        </div>
+    </div>
+    </div>
+    <br>
 {% endfor %}
 {% else %}
 You have not made any orders :(
-{% endif %}
+{% endif %}</div>
 {% endblock %}
+<br>
