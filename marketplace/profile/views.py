@@ -91,7 +91,7 @@ def add_to_basket(request,item_id):
             #add price to basket
             basket.totalAmount += prod.price*ib.count
             basket.save()
-
+            return HttpResponseRedirect(reverse('account:product_detail',kwargs={'prod_id':prod.id}))
     return render(request,'profile/product_detail.html',{'item': prod})
 
 @login_required
@@ -108,19 +108,20 @@ def view_basket(request):
 def remove_from_basket(request,item_id):
     basket = get_object_or_404(Basket, owner=request.user.id)
     item = get_object_or_404(Product,pk=item_id)
+    if request.method=='POST':
+        ib = ItemBasket.objects.get(basket=basket,item=item)
+        #add back into inventory
+        item.inventory = item.inventory + ib.count
+        item.save()
 
-    ib = ItemBasket.objects.get(basket=basket,item=item)
-    #add back into inventory
-    item.inventory = item.inventory + ib.count
-    item.save()
+        #recalculate total amount
+        basket.totalAmount -= item.price*ib.count
+        basket.save()
 
-    #recalculate total amount
-    basket.totalAmount -= item.price*ib.count
-    basket.save()
-
-    #delete item from basket
-    ib.delete()
-    items = ItemBasket.objects.filter(basket=basket)
+        #delete item from basket
+        ib.delete()
+        items = ItemBasket.objects.filter(basket=basket)
+        return HttpResponseRedirect(reverse('account:basket'))
     return render(request, 'profile/basket.html', {'items': items, 'total': basket.totalAmount})
 
 @login_required
@@ -128,6 +129,10 @@ def checkout(request):
     basket = get_object_or_404(Basket,owner=request.user)
     list = ItemBasket.objects.filter(basket = basket)
     addresses = ShippingAddress.objects.filter(user=request.user)
+    if request.method=='POST':
+        form=forms.Checkout(request.POST)
+        if form.is_valid:
+            return HttpResponseRedirect(reverse('account:orderSummary'))
     return render(request,'profile/checkout.html',{'list':list,'total':basket.totalAmount,'addresses':addresses})
 
 @login_required

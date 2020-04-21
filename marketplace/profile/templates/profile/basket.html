@@ -20,7 +20,10 @@
         </td>
         <td>${{item.item.price}}</td>
         <td>{{item.count}}</td>
-        <td class="noBorder"><a href="{% url 'account:remove_from_basket' item.item.id %}">remove</a></td>
+        <td class="noBorder"><form action="{% url 'account:remove_from_basket' item.item.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="remove"/>
+        </form></td>
     </tr>
     {% endfor %}
     </tbody>

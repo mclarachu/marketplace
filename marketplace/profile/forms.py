@@ -25,5 +25,4 @@ class AddToBasket(ModelForm):
 class Checkout(forms.Form):
     payment_option = forms.ChoiceField(
         widget=forms.RadioSelect, choices=PAYMENT_CHOICES)
-    creditcard = forms.CharField()
-    addressChoice = forms.IntegerField()
+    addressChoice = forms.IntegerField(widget=forms.RadioSelect,required=True)

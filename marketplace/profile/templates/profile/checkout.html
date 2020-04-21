@@ -24,6 +24,7 @@
 <h3>Shipping Address(es)</h3>
 {% if addresses %}
 <form action="{% url 'account:checkout' %}" method="post">
+    {% csrf_token %}
     {% for address in addresses %}
     <input type="radio" name="addressChoice" value="{{address.id}}"/>
     <div>{{address.street1}}</div>
@@ -32,11 +33,15 @@
     <div>{{address.country}}</div>
     <div>Contact number:{{address.phone_num}}</div>
 {% endfor %}
+    {{forms.addressChoice.errors}}
 {% endif %}
     <a href="{% url 'account:add_address2' %}">Add an address</a>
     <h3>Payment Option</h3>
     <input type="radio" name="payment_option" value="C"/> Credit Card
     <input type="radio" name="payment_option" value="P"/> PayPal
+    {{forms.payment_option.errors}}
+    <h6>Payment functionality not implemented</h6>
+    <input type="submit" value="Finish checkout"/>
 </form>
 {% endif %}
 {% endblock %}
