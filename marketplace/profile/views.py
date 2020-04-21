@@ -13,6 +13,13 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 @login_required
+def toggle(request):
+    user = request.user.profile
+    user.is_available = request.POST['is_available']
+    user.save()
+    return HttpResponse('success')
+
+@login_required
 def account(request):
     address = ShippingAddress.objects.filter(user=request.user.id)
     return render(request,'profile/account.html',{'addresses':address})

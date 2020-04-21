@@ -16,6 +16,6 @@ urlpatterns = [
     path('<int:order_id>/orderSummary/',views.orderSummary,name='orderSummary'),
     path('orderHistory',views.orderHistory,name='orderHistory'),
     path('<int:item_id>/updateProduct/',views.updateProduct,name='updateProduct'),
-    path('<int:address_id>/updateAddress/',views.updateAddress,name='updateAddress')
-
+    path('<int:address_id>/updateAddress/',views.updateAddress,name='updateAddress'),
+    path('toggle/', views.toggle,name='toggle')
 ]

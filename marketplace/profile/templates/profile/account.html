@@ -4,6 +4,13 @@
 <h1>Welcome to your profile!</h1>
 <h3>Feel free to edit your account as needed.</h3>
 
+    <label>Available</label>
+    <label class="switch">
+        <input type="checkbox" id="checkbox" value="{{request.user.profile.is_available}}">
+        <span class="slider round"></span>
+    </label>
+
+
 <div class="block">
     <a href="{% url 'account:orderHistory' %}">View your order history</a>
     <p>
@@ -42,3 +49,17 @@ change username and stuff like that
 </div>
 {% endblock %}
 <br>
+{% block script %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> <!-- Import Jquery Here-->
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#checkbox').change(function() {
+        $.post("{% url 'account:toggle' %}", {
+            id: '{{request.user.id}}',
+            is_available: this.checked,
+            csrfmiddlewaretoken: '{{ csrf_token }}'
+        });
+    });
+});
+</script>
+{% endblock %}

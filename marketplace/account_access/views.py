@@ -80,5 +80,7 @@ def do_logout(request):
     basket.totalAmount = 0
     basket.save()
 
+    request.user.profile.is_available = false
+
     logout(request)
     return HttpResponseRedirect(reverse('store:index'))
