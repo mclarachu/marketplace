@@ -56,6 +56,7 @@ class OrderHistory(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     shipped = models.ForeignKey(ShippingAddress, on_delete=models.CASCADE)
     total_payment = models.DecimalField(max_digits=40,decimal_places=2,default=0)
+    dateTime = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.user.username

@@ -173,3 +173,12 @@ def orderSummary(request,order_id):
     order = get_object_or_404(OrderHistory,pk=order_id)
     list = ItemOrder.objects.filter(order=order)
     return render(request,'profile/orderSummary.html', {'order':order,'list':list})
+
+def orderHistory(request):
+    orders = OrderHistory.objects.filter(user=request.user.id)
+    items = {}
+    for order in orders:
+        items[order.id]=ItemOrder.objects.filter(order=order)
+    print(items)
+    return render(request,'profile/orderHistory.html',{'orders':orders,'items':items})
+
