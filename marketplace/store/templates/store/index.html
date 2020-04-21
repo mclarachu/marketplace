@@ -12,6 +12,7 @@
                     <p  style="color: mediumaquamarine;">Price: ${{product.price}}</p>
                     <p  style="color: mediumaquamarine;">Seller: {{product.seller}}</p>
                 </div>
+                <p><a href="{% url 'chat:room' product.seller.username %}">Chat with the seller!</a></p>
             </div><p></p>
         {% endfor %}
 </div>

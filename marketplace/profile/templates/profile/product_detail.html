@@ -2,6 +2,7 @@
 {% block content %}
 <h1>Viewing item : {{item.name}} </h1>
 <h3>Info Page for this product. Message the seller if you're curious! </h3>
+<a href="{% url 'chat:room' item.seller.username %}">Chat with the seller</a>
 
 <div class="block">
     <div class="productContainer">
@@ -22,6 +23,9 @@
             {% endif %}
             {% else %}
             <p>In stock: SOLD OUT!! Backordered!!</p>
+            {% endif %}
+            {% if  item.seller == request.user %}
+            <a href="{% url 'account:updateProduct' item.id %}">Edit</a>
             {% endif %}
         </div>
     </div>

@@ -10,7 +10,7 @@ PAYMENT_CHOICES = (
 class AddressForm(ModelForm):
     class Meta:
         model = ShippingAddress
-        fields = ['country','street1','street2','city','province','postal_code','phone_num']
+        fields = ['country','street1','street2','city','province','postal_code']
 
 class ProductForm(ModelForm):
     class Meta:

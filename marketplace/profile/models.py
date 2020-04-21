@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your models here.
 def validate_price(value):
@@ -12,6 +14,23 @@ def validate_price(value):
 
 def get_upload_path(instance, filename):
     return 'user-' + str(instance.seller.id) + '/' + filename
+
+class Profile(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    phone = models.PositiveIntegerField()
+    is_available = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.user.username
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
 
 class Product(models.Model):
     seller = models.ForeignKey(User,on_delete=models.CASCADE)
@@ -47,7 +66,6 @@ class ShippingAddress(models.Model):
     city = models.CharField(max_length=40)
     province = models.CharField(max_length=40)
     postal_code = models.CharField(max_length=10)
-    phone_num = models.PositiveIntegerField()
 
     def __str__(self):
         return self.user.username

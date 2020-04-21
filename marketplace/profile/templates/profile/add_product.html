@@ -16,16 +16,16 @@
     </div><br>
     <div>
         <label>Description:<br>
-            <textarea name="description" rows="4" cols="36">Enter comments here.</textarea>
+            <textarea name="description" rows="4" cols="36" value="{{form.data.description}}">Enter comments here.</textarea>
          </label>
         {{form.description.errors}}
     </div><br>
     <div>
-        Set price: $<input type="number" min="0" name="price" />
+        Set price: $<input type="number" min="0" name="price" value="{{form.data.price}}"/>
         {{form.price.errors}}
     </div><br>
     <div>
-        Available: <input type="number" min="0" name="inventory" />
+        Available: <input type="number" min="0" name="inventory" value="{{form.data.inventory}}" />
         {{form.inventory.errors}}
     </div><br>
     <input  style="color: palevioletred;" type="submit" value="Add to store"/>

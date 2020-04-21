@@ -6,7 +6,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from . import forms
-from profile.models import Basket,ItemBasket
+from profile.models import Basket,ItemBasket,Profile
+from django.core.exceptions import ObjectDoesNotExist
 
 
 # Create your views here.
@@ -23,9 +24,11 @@ def signup(request):
                     first_name=form.cleaned_data['first_name'],
                     last_name=form.cleaned_data['last_name']
                 )
-
+                user.profile.phone =form.cleaned_data['phone']
+                user.save()
                 #Create a basket for user
                 newBasket = Basket(owner = request.user)
+                newBasket.save()
 
                 return HttpResponseRedirect(reverse('login'))
             except IntegrityError:

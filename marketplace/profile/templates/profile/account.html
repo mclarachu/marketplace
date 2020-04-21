@@ -11,7 +11,7 @@
         Username: {{request.user.username}}
         <br>Email: {{request.user.email}}
         <br>Full name: {{request.user.get_full_name}}
-        <br> Contact number: {{address.phone_num}}
+        <br> Contact number: {{request.user.profile.phone}}
     </div>
 
     {% if addresses %}
@@ -24,6 +24,7 @@
             <br>{{address.postal_code}} {{address.city}}, {{address.province}}
             <br>{{address.country}}
             <br>━━━━━━━━━━✫・*。
+            <br><a href="{% url 'account:updateAddress' address.id %}">Edit</a>
         </div>
     {% endfor %}
     </div>

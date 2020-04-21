@@ -169,11 +169,13 @@ def add_address2(request):
         context['form'] = form
     return render(request, 'profile/shipping_address.html', context)
 
+@login_required
 def orderSummary(request,order_id):
     order = get_object_or_404(OrderHistory,pk=order_id)
     list = ItemOrder.objects.filter(order=order)
     return render(request,'profile/orderSummary.html', {'order':order,'list':list})
 
+@login_required
 def orderHistory(request):
     orders = OrderHistory.objects.filter(user=request.user).order_by('dateTime')
     array = []
@@ -185,12 +187,22 @@ def orderHistory(request):
     print(array)
     return render(request,'profile/orderHistory.html', {'array' : array})
 
-def editProductDetails(request,item_id):
+@login_required
+def updateProduct(request,item_id):
     item = get_object_or_404(Product,pk=item_id)
     if request.method == 'POST':
-        form = forms.ProductForm(request.POST, request.FILES)
+        form = forms.ProductForm(request.POST, request.FILES,instance = item)
         if form.is_valid():
-            item = form.save(commit=False)
             item.save()
             return HttpResponseRedirect(reverse('account:product_detail',kwargs={'prod_id':item_id}))
-    return render(request, 'profile/add_product.html', {'item':item})
+    return render(request, 'profile/updateProduct.html',{'item':item})
+
+@login_required
+def updateAddress(request,address_id):
+    address = get_object_or_404(ShippingAddress,pk=address_id)
+    if request.method == 'POST':
+        form = forms.AddressForm(request.POST,instance = address)
+        if form.is_valid():
+            address.save()
+            return HttpResponseRedirect(reverse('account:account'))
+    return render(request,'profile/updateAddress.html',{'address':address})
