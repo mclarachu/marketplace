@@ -1,7 +1,7 @@
 
 from django.shortcuts import render,get_object_or_404
 from django.contrib.auth.models import User
-from .models import Product,ShippingAddress,Basket,OrderHistory,ItemBasket
+from .models import Product,ShippingAddress,Basket,OrderHistory,ItemBasket,ItemOrder
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
 from django.core.exceptions import ObjectDoesNotExist
@@ -130,9 +130,30 @@ def checkout(request):
     list = ItemBasket.objects.filter(basket = basket)
     addresses = ShippingAddress.objects.filter(user=request.user)
     if request.method=='POST':
-        form=forms.Checkout(request.POST)
-        if form.is_valid:
-            return HttpResponseRedirect(reverse('account:orderSummary'))
+        address_id = request.POST['addressChoice']
+        payment = request.POST['payment_option']
+        address = get_object_or_404(ShippingAddress,pk=address_id)
+
+        #Create an order instance to add to OrderHistory
+        new_order = OrderHistory(
+            user = request.user,
+            shipped = address,
+            total_payment = basket.totalAmount
+        )
+        new_order.save()
+
+        for item in list:
+            itemOrder = ItemOrder(
+                order = new_order,
+                item = item.item,
+                count = item.count
+            )
+            itemOrder.save()
+
+        #delete the current basket
+        basket.delete()
+
+        return HttpResponseRedirect(reverse('account:orderSummary',kwargs={'order_id':new_order.id}))
     return render(request,'profile/checkout.html',{'list':list,'total':basket.totalAmount,'addresses':addresses})
 
 @login_required
@@ -148,8 +169,7 @@ def add_address2(request):
         context['form'] = form
     return render(request, 'profile/shipping_address.html', context)
 
-
-
-
-
-
+def orderSummary(request,order_id):
+    order = get_object_or_404(OrderHistory,pk=order_id)
+    list = ItemOrder.objects.filter(order=order)
+    return render(request,'profile/orderSummary.html', {'order':order,'list':list})

@@ -26,7 +26,7 @@ class Product(models.Model):
 
 class Basket(models.Model):
     owner = models.ForeignKey(User,on_delete=models.CASCADE)
-    totalAmount=models.DecimalField(max_digits=19,decimal_places=2,validators=[validate_price])
+    totalAmount=models.DecimalField(max_digits=19,decimal_places=2,validators=[validate_price],default=0)
 
     def __str__(self):
         return self.owner.username
@@ -34,7 +34,7 @@ class Basket(models.Model):
 class ItemBasket(models.Model):
     basket = models.ForeignKey(Basket,on_delete=models.CASCADE)
     item = models.ForeignKey(Product,on_delete=models.CASCADE)
-    count = models.PositiveIntegerField()
+    count = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.basket.owner.username +' : ' + self.item.name
@@ -54,9 +54,16 @@ class ShippingAddress(models.Model):
 
 class OrderHistory(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    items = models.ManyToManyField(Product)
     shipped = models.ForeignKey(ShippingAddress, on_delete=models.CASCADE)
-    total_payment = models.DecimalField(max_digits=40,decimal_places=2)
+    total_payment = models.DecimalField(max_digits=40,decimal_places=2,default=0)
 
     def __str__(self):
         return self.user.username
+
+class ItemOrder(models.Model):
+    order = models.ForeignKey(OrderHistory,on_delete=models.CASCADE)
+    item = models.ForeignKey(Product,on_delete=models.CASCADE)
+    count = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return self.order.user.username +' : ' + self.item.name
