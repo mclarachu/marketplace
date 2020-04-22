@@ -8,11 +8,13 @@ class ModelTestCase(TestCase):
     def setUp(self):
         userTest = User.objects.create_user(username='test', password='test1234', email='test@mail.com')
         userTest.save()
-        Profile.objects.create(user=userTest.username,phone='911',is_available='False')
+        userTest.profile.phone='911'
+        userTest.save()
 
     def test_profile_is_available(self):
-        profileTest = self.client.get(username=userTest, phone='911')
-        self.assertEquals(profileTest.is_available, 'False')
+        userTest = User.objects.get(username='test')
+        profileTest = Profile.objects.get(user=userTest, phone='911')
+        self.assertFalse(profileTest.is_available)
 
 
 
