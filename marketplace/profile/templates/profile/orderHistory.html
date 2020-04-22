@@ -1,9 +1,11 @@
 {% extends "store/base.html" %}
-{% block content %}<h1>Your Order History</h1>
+{% block content %}
+<h1 style="text-align: center">Your Order History</h1>
+<h3 style="text-align: center; color: mediumvioletred">Hope you're enjoying the ecommerce experience ^_^</h3>
 <div class="block">
     {% if array %}
     {% for current in array %}
-    <div class="orderBlock">
+    <div class="orderedItems">
         <h3>Order id: {{current.order.id}}</h3>
         <h4 style="color:rebeccapurple;">Order made on: {{current.order.dateTime}}</h4>
         <table>

@@ -17,8 +17,8 @@ html {
 /*}*/
 
 th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
+    border: 1px solid black;
+    border-collapse: collapse;
     padding: 10px;
     text-align: center;
 }
@@ -162,5 +162,14 @@ h3,h4 {
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 5px;
+}
 
+.orderedItems {
+    width: 250px;
+    height: auto;
+    background-color:aliceblue;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    margin:auto;
 }

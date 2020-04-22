@@ -1,43 +1,45 @@
 {% extends "store/base.html" %}
 {% block content %}
-<h1>ORDER SUMMARY</h1>
-<h2 style="color:tomato">Yay! Your order has been placed.</h2>
+<h1 style="text-align: center">ORDER SUMMARY</h1>
+<h2 style="color:mediumvioletred; text-align: center">Yay! Your order has been placed.</h2>
 <div class="block">
     {% if order %}
-    <h3>Order ID: {{order.id}}</h3>
-    <p>Order made on: {{order.dateTime}}</p>
-    <table>
-        <thead>
-        <tr>
-            <th>Item</th>
-            <th>Price</th>
-            <th>Amount</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for item in list %}
-        <tr>
-            <td>{{item.item.name}}</td>
-            <td>${{item.item.price}}</td>
-            <td>{{item.count}}</td>
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    <p>Total payment : {{order.total_payment}}</p>
-    <h3>Shipped to:</h3>
-    <div class="addressContainer">
-        <div class="addressBlock">
-            <br>{{order.shipped.street1}}
-            <br>{{order.shipped.street2}}
-            <br>{{order.shipped.postal_code}} {{order.shipped.city}}, {{order.shipped.province}}
-            <br>{{order.shipped.country}}
-            <br>
-            <br>Contact number:{{order.shipped.phone_num}}
-            <br>━━━━━━━━━━━━✫・*。
+    <div class="orderedItems">
+        <h3>Order ID: {{order.id}}</h3>
+        <p>Order made on: {{order.dateTime}}</p>
+        <table>
+            <thead>
+            <tr>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Amount</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in list %}
+            <tr>
+                <td>{{item.item.name}}</td>
+                <td>${{item.item.price}}</td>
+                <td>{{item.count}}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <p>Total payment : ${{order.total_payment}}</p>
+        <h3>Shipped to:</h3>
+        <div class="addressContainer">
+            <div class="addressBlock">
+                <br>{{order.shipped.street1}}
+                <br>{{order.shipped.street2}}
+                <br>{{order.shipped.postal_code}} {{order.shipped.city}}, {{order.shipped.province}}
+                <br>{{order.shipped.country}}
+                <br>
+                <br>Contact number:{{order.shipped.phone_num}}
+                <br>━━━━━━━━✫・*。
+            </div>
         </div>
     </div>
-    <h4 style="color: palevioletred">Thank you for being our valued customer ^_^</h4>
+    <h4 style="color: palevioletred; text-align: center">Thank you for being our valued customer ^_^</h4>
     {% endif %}
 </div>
 {% endblock %}

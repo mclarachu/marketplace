@@ -24,11 +24,12 @@
 </div>
 <br>
 {% else %}
+<div class="block">
 {% if request.user.is_authenticated %}
 Your store's current inventory is feeling a bit empty! MEOW!
 {% else %}
-{{seller}} has nothing to sell
+{{seller}} has nothing to sell at the moment! Come back later :)
 {% endif %}
 {% endif %}
-
+</div>
 {% endblock %}
