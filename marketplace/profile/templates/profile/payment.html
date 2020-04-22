@@ -1,14 +1,16 @@
 {% extends "store/base.html" %}
-{% block content %}
-
+{% block statics %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'profile/payment.css' %}"/>
 <script src="https://js.stripe.com/v3/"></script>
-<link rel="stylesheet" type="text/css" href="payment.css" />
-
+<script src="{% static 'profile/payment.js' %}"></script>
+{% endblock %}
+{% block content %}
 <h1>PAYMENT</h1>
 <h3> Time to pull out your credit card! </h3>
 
 <div class="block">
-
+    <p>TOTAL PAYMENT: {{basket.totalAmount}}</p>
     <div id="collapseStripe" class="wrapper">
         <script src="https://js.stripe.com/v3/"></script>
 
@@ -34,57 +36,4 @@
 
     </div>
 </div>
-
-
-<!-- script for the stripe form -->
-<script src="payment.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-
-<script>
-    var form = document.querySelector('#payment-form');
-    var client_token = '{{ client_token }}';
-
-    braintree.dropin.create({
-        authorization: client_token,
-        container: '#bt-dropin',
-        paypal: {
-            flow: 'vault'
-        }
-    }, function (createErr, instance) {
-        form.addEventListener('submit', function (event) {
-            event.preventDefault();
-
-            instance.requestPaymentMethod(function (err, payload) {
-                if (err) {
-                    console.log('Error', err);
-                    return;
-                }
-
-                // Add the nonce to the form and submit
-                document.querySelector('#nonce').value = payload.nonce;
-                form.submit();
-            });
-        });
-    });
-</script>
-
-<!-- script for toggling display of the form -->
-<script type="text/javascript">
-    function toggleDisplay() {
-        var x = document.getElementById("collapseStripe");
-        if (x.style.display === "none") {
-            x.style.display = "block";
-        } else {
-            x.style.display = "none";
-        }
-    };
-</script>
-
-
-
-
-
-
-
 {% endblock %}
-<br>

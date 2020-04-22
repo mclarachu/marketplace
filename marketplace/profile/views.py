@@ -132,30 +132,53 @@ def checkout(request):
     addresses = ShippingAddress.objects.filter(user=request.user)
     if request.method=='POST':
         address_id = request.POST['addressChoice']
-        payment = request.POST['payment_option']
-        address = get_object_or_404(ShippingAddress,pk=address_id)
-
-        #Create an order instance to add to OrderHistory
-        new_order = OrderHistory(
-            user = request.user,
-            shipped = address,
-            total_payment = basket.totalAmount
-        )
-        new_order.save()
-
-        for item in list:
-            itemOrder = ItemOrder(
-                order = new_order,
-                item = item.item,
-                count = item.count
-            )
-            itemOrder.save()
-
-        #delete the current basket
-        basket.delete()
-
-        return HttpResponseRedirect(reverse('account:payment',kwargs={'order_id':new_order.id}))
+        return HttpResponseRedirect(reverse('account:payment',kwargs={'basket_id':basket.id,'address_id':address_id}))
     return render(request,'profile/checkout.html',{'list':list,'total':basket.totalAmount,'addresses':addresses})
+
+@login_required
+def payment(request,basket_id,address_id):
+    basket = get_object_or_404(Basket,pk=basket_id)
+    list = ItemBasket.objects.filter(basket=basket)
+    address = get_object_or_404(ShippingAddress,pk=address_id)
+    publishKey = settings.STRIPE_SECRET_KEY
+    if request.method == 'POST':
+        try:
+            token = request.POST.get('stripeToken',request.user.id)
+
+            charge=stripe.Charge.create(
+                ammount=100*basket.totalAmount,
+                currency='cad',
+                description='Example charge',
+                source=token
+            )
+            # Create an order instance to add to OrderHistory
+            new_order = OrderHistory(
+                user=request.user,
+                shipped=address,
+                total_payment=basket.totalAmount
+            )
+            new_order.save()
+
+            for item in list:
+                itemOrder = ItemOrder(
+                    order=new_order,
+                    item=item.item,
+                    count=item.count
+                )
+                itemOrder.save()
+
+            # delete the current basket
+            basket.delete()
+
+            return HttpResponseRedirect(reverse('account:orderSummary',kwargs={'order_id':new_order.id}))
+        except stripe.error.CardError as e:
+            message.info(request,"Your card has been declined.")
+    context = {
+        'basket':basket,
+        'STRIPE_PUBLISHABLE_KEY':publishKey
+    }
+
+    return render(request,'profile/payment.html',context)
 
 @login_required
 def add_address2(request):
