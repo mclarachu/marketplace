@@ -2,39 +2,37 @@
 {% block content %}
 <h1>Sign up with us today!</h1>
 <div class="block">
-<form action="" method="post">
-    {% csrf_token %}
-    <p>
-        Username: <input type="text" name="username" value="{{form.data.username}}"/>
-        {{form.username.errors}}
-    </p>
-    <p>
-        First name: <input type="text" name="first_name" value="{{form.data.first_name}}"/>
-        {{form.first_name.errors}}
-    </p>
-    <p>
-        Last name: <input type="text" name="last_name" value="{{form.data.last_name}}"/>
-        {{form.last_name.errors}}
-    </p>
-    <p>
-        Email: <input type="text" name="email" value="{{form.data.email}}"/>
-        {{form.email.errors}}
-    </p>
-    <p>
-        Phone number: <input type="tel" name="phone" />
-        {{ form.phone.errors }}
-    </p>
-    <p>
-        Create password: <input type=password" name="password"/>
-        {{form.password.errors}}
-    </p>
-    <p>
-        Confirm password: <input type="password" name="password_confirm" />
-        {{ form.password_confirm.errors}}
-    </p>
-    <p>
-        <input type="submit" value="Create"/>
-    </p>
-</form>
+    <div class="orderBlock" style="padding-top: 10px;padding-bottom: 10px;padding-right: 50px">
+        <form action="" method="post">
+            {% csrf_token %}
+            Username: <input type="text" name="username" value="{{form.data.username}}"/>
+            {{form.username.errors}}
+            <p>
+                First name: <input type="text" name="first_name" value="{{form.data.first_name}}"/>
+                {{form.first_name.errors}}
+            </p>
+            <p>
+                Last name: <input type="text" name="last_name" value="{{form.data.last_name}}"/>
+                {{form.last_name.errors}}
+            </p>
+            <p>
+                Email: <input type="text" name="email" value="{{form.data.email}}"/>
+                {{form.email.errors}}
+            </p>
+            <p>
+                Phone number: <input type="tel" name="phone"/>
+                {{ form.phone.errors }}
+            </p>
+            <p>
+                Create password: <input type=password" name="password"/>
+                {{form.password.errors}}
+            </p>
+            <p>
+                Confirm password: <input type="password" name="password_confirm"/>
+                {{ form.password_confirm.errors}}
+            </p>
+            <input type="submit" value="Create"/>
+        </form>
+    </div>
 </div>
 {% endblock %}

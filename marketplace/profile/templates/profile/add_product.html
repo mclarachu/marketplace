@@ -2,34 +2,41 @@
 {% block content %}
 <h1>Adding an item to your store?</h1>
 <h3> Thanks for contributing to our feline economy!</h3>
-
 <div class="block">
-<form action="" method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    <div>
-        Name: <input type="text" name="name" value="{{form.data.name}}"/>
-        {{form.name.errors}}
-    </div><br>
-    <div>
-        Image: <input type="file" name="image" />
-        {{form.image.errors}}
-    </div><br>
-    <div>
-        <label>Description:<br>
-            <textarea name="description" rows="4" cols="36" value="{{form.data.description}}">Enter comments here.</textarea>
-         </label>
-        {{form.description.errors}}
-    </div><br>
-    <div>
-        Set price: $<input type="number" min="0" name="price" value="{{form.data.price}}"/>
-        {{form.price.errors}}
-    </div><br>
-    <div>
-        Available: <input type="number" min="0" name="inventory" value="{{form.data.inventory}}" />
-        {{form.inventory.errors}}
-    </div><br>
-    <input  style="color: palevioletred;" type="submit" value="Add to store"/>
-</form>
+    <div class="orderBlock" style="padding-top: 10px;padding-bottom: 10px">
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div>
+                Name: <input type="text" name="name" value="{{form.data.name}}"/>
+                {{form.name.errors}}
+            </div>
+            <br>
+            <div>
+                Image: <input type="file" name="image"/>
+                {{form.image.errors}}
+            </div>
+            <br>
+            <div>
+                <label>Description:<br>
+                    <textarea name="description" rows="4" cols="36" value="{{form.data.description}}"
+                              placeholder="Enter a description of the item."></textarea>
+                </label>
+                {{form.description.errors}}
+            </div>
+            <br>
+            <div>
+                Set price: $<input type="number" min="0" name="price" value="{{form.data.price}}"/>
+                {{form.price.errors}}
+            </div>
+            <br>
+            <div>
+                Available: <input type="number" min="0" name="inventory" value="{{form.data.inventory}}"/>
+                {{form.inventory.errors}}
+            </div>
+            <br>
+            <input style="color:palevioletred;" type="submit" value="Add to store"/>
+        </form>
+    </div>
 </div>
 <br>
 {% endblock %}

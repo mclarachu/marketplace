@@ -3,33 +3,40 @@
 <h1>Update {{item.name}} info</h1>
 
 <div class="block">
-<form action="" method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    <div>
-        Name: <input type="text" name="name" value="{{item.name}}"/>
-        {{form.name.errors}}
-    </div><br>
-    <div>
-        Image: <input type="file" name="image" value="{{item.image}}"/>
-        {{form.image.errors}}
-    </div><br>
-    <div>
-        <label>Description:<br>
-            <textarea name="description" rows="4" cols="36" value="{{item.description}}">{{item.description}}</textarea>
-         </label>
-        {{form.description.errors}}
-    </div><br>
-    <div>
-        Set price: $<input type="number" min="0" name="price" value="{{item.price}}"/>
-        {{form.price.errors}}
-    </div><br>
-    <div>
-        In Inventory: <input type="number" min="0" name="inventory" value="{{item.inventory}}" />
-        {{form.inventory.errors}}
-    </div><br>
-    <input  style="color: palevioletred;" type="submit" value="Save changes"/>
-    <a href="{% url 'account:product_detail' item.id %}">Cancel</a>
-</form>
+    <div class="orderBlock" style="padding-top: 10px;padding-bottom: 10px">
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            Name: <input type="text" name="name" value="{{item.name}}"/>
+            {{form.name.errors}}
+            <br>
+            <br>
+            <div>
+                Image: <input type="file" name="image" value="{{item.image}}"/>
+                {{form.image.errors}}
+            </div>
+            <br>
+            <div>
+                <label>Description:<br>
+                    <textarea name="description" rows="4" cols="36"
+                              value="{{item.description}}">{{item.description}}</textarea>
+                </label>
+                {{form.description.errors}}
+            </div>
+            <br>
+            <div>
+                Set price: $<input type="number" min="0" name="price" value="{{item.price}}"/>
+                {{form.price.errors}}
+            </div>
+            <br>
+            <div>
+                In Inventory: <input type="number" min="0" name="inventory" value="{{item.inventory}}"/>
+                {{form.inventory.errors}}
+            </div>
+            <br>
+            <input style="color: palevioletred;" type="submit" value="Save changes"/>
+            <a href="{% url 'account:product_detail' item.id %}">Cancel</a>
+        </form>
+    </div>
 </div>
 <br>
 {% endblock %}

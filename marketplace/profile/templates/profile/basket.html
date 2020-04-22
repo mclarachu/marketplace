@@ -1,39 +1,41 @@
 {% extends "store/base.html" %}
 {% block content %}
 <h1>What's in your basket?</h1>
-<h3> Check out the feline market for new items available!</h3>
+<h3> Check out the feline market for new items available!!</h3>
 <div class="block">
-{% if items %}
-<table>
-    <thead>
-    <tr>
-        <th>Item</th>
-        <th>Price</th>
-        <th>Amount</th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for item in items %}
-    <tr>
-        <td>
-            <a href="{% url 'account:product_detail' item.item.id %}">{{item.item.name}}</a>
-        </td>
-        <td>${{item.item.price}}</td>
-        <td>{{item.count}}</td>
-        <td class="noBorder"><form action="{% url 'account:remove_from_basket' item.item.id %}" method="post">
-            {% csrf_token %}
-            <input type="submit" style="color: tomato;" value="REMOVE"/>
-        </form></td>
-    </tr>
-    {% endfor %}
-    </tbody>
-</table>
-<p><strong>Total: </strong> ${{total}}</p>
-<button onclick="document.location = 'checkout'" style="color:palevioletred;">Checkout</button></br>
-{% else %}
-Oh MEOWW! You dont have anything in your basket!
-{% endif %}
+    {% if items %}
+    <table>
+        <thead>
+        <tr>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Amount</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in items %}
+        <tr>
+            <td>
+                <a href="{% url 'account:product_detail' item.item.id %}">{{item.item.name}}</a>
+            </td>
+            <td>${{item.item.price}}</td>
+            <td>{{item.count}}</td>
+            <td class="noBorder">
+                <form action="{% url 'account:remove_from_basket' item.item.id %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" style="color: tomato;" value="REMOVE"/>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <p><strong>Total:</strong> ${{total}}</p>
+    <button onclick="document.location = 'checkout'" style="color:palevioletred;">Checkout</button>
+    </br>
+    {% else %}
+    Oh MEOWW! You dont have anything in your basket!
+    {% endif %}
 </div>
 <br>
-
 {% endblock %}

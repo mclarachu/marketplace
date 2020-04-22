@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'photo/style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'photo/style.css' %}"/>
     {% block statics %}
     {% endblock %}
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -13,7 +13,7 @@
 <body id="jumpToTop">
 
 <header style="text-align: center;">
-    <img src="{% static 'photo/banner.jpg' %}" />
+    <img src="{% static 'photo/banner.jpg' %}" alt="kat banner" style="width: 625px;height: 245px"/>
     <nav>
         <a id="index" href="{% url 'store:index' %}">Market</a>
         <a id="chat" href="{% url 'chat:index' %}">Chat Room</a>
@@ -29,7 +29,7 @@
     </nav>
     <div class="roses" style="height: 60px"></div>
 
-    <marquee width="100%" direction="right" scrollamount="12" >
+    <marquee width="100%" direction="right" scrollamount="12">
         <h4 style="text-align: center; color: lightseagreen">CURRENT DELIVERY TIMES DELAYED BY 6-8 DAYS!</h4>
     </marquee>
 </header>
@@ -37,8 +37,10 @@
 {% block content %}
 {% endblock %}
 
-<footer style="text-align: center;" >
-    <a href="#jumpToTop"><i class="material-icons" style="font-size:60px; color: plum; padding-bottom: 20px">expand_less</i></a>
+<footer style="text-align: center;">
+    <a href="#jumpToTop">
+        <i class="material-icons" style="font-size:60px; color: plum; padding-bottom: 20px">expand_less</i>
+    </a>
 </footer>
 </body>
 {% block script %}

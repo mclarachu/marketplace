@@ -1,11 +1,10 @@
 {% extends "store/base.html" %}
 {% block content %}
-
 <h1 style="text-align: center;"> Welcome to {{seller.username}}'s store </h1>
-
 {% if request.user.username == seller.username  %}
-<div class="itemBlock"><button onclick="document.location = 'add_product'">Add new item!</button></div>
-
+<div class="itemBlock">
+    <button onclick="document.location = 'add_product'">Add new item!</button>
+</div>
 {% endif %}
 {% if items %}
 <div class="allPosts">
@@ -13,24 +12,23 @@
     <div class="posts">
         <img src="{{item.image.url}}" alt=" {{item.name}}"/>
         <div class="postContent">
-            <a style="color: mediumorchid;" href="{% url 'account:product_detail' item.id %}">Item name: {{item.name}}</a>
-            <p  style="color: mediumaquamarine;">Price : ${{item.price}}</p>
-            <p  style="color: mediumaquamarine;">Available : {{item.inventory}}</p>
+            <a style="color: mediumorchid;" href="{% url 'account:product_detail' item.id %}">Item name:
+                {{item.name}}</a>
+            <p style="color: mediumaquamarine;">Price : ${{item.price}}</p>
+            <p style="color: mediumaquamarine;">Available : {{item.inventory}}</p>
         </div>
     </div>
-    <p></p>
-
+    <br>
     {% endfor %}
 </div>
 </div>
 <br>
-
 {% else %}
-    {% if request.user.is_authenticated %}
+{% if request.user.is_authenticated %}
 Your store's current inventory is feeling a bit empty! MEOW!
-    {% else %}
+{% else %}
 {{seller}} has nothing to sell
-    {% endif %}
+{% endif %}
 {% endif %}
 
 {% endblock %}

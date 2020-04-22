@@ -1,45 +1,47 @@
 {% extends "store/base.html" %}
 {% block content %}<h1>Your Order History</h1>
 <div class="block">
-{% if array %}
-{% for current in array %}
+    {% if array %}
+    {% for current in array %}
     <div class="orderBlock">
-<h3 >Order id: {{current.order.id}}</h3>
-<h4 style="color:rebeccapurple;">Order made on: {{current.order.dateTime}}</h4>
-<table>
-    <thead>
-    <tr>
-        <th>Item</th>
-        <th>Price</th>
-        <th>Amount</th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for item in current.items %}
-    <tr>
-        <td>{{item.item.name}}</td>
-        <td>${{item.item.price}}</td>
-        <td>{{item.count}}</td>
-    </tr>
-    {% endfor %}
-    </tbody>
-</table>
-<p>Total payment : ${{current.order.total_payment}}</p>
-<h3>Shipped to :</h3>
-    <div class="addressContainer">
-        <div class="addressBlock">
-            {{current.order.shipped.street1}}
-            <br>{{current.order.shipped.street2}}
-            <br>{{current.order.shipped.postal_code}} {{current.order.shipped.city}}, {{current.order.shipped.province}}
-            <br>{{current.order.shipped.country}}
-            <br>━━━━━━━━━━✫・*。
+        <h3>Order id: {{current.order.id}}</h3>
+        <h4 style="color:rebeccapurple;">Order made on: {{current.order.dateTime}}</h4>
+        <table>
+            <thead>
+            <tr>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Amount</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in current.items %}
+            <tr>
+                <td>{{item.item.name}}</td>
+                <td>${{item.item.price}}</td>
+                <td>{{item.count}}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <p>Total payment : ${{current.order.total_payment}}</p>
+        <h3>Shipped to :</h3>
+        <div class="addressContainer">
+            <div class="addressBlock">
+                {{current.order.shipped.street1}}
+                <br>{{current.order.shipped.street2}}
+                <br>{{current.order.shipped.postal_code}} {{current.order.shipped.city}},
+                {{current.order.shipped.province}}
+                <br>{{current.order.shipped.country}}
+                <br>━━━━━━━━━━✫・*。
+            </div>
         </div>
     </div>
-    </div>
     <br>
-{% endfor %}
-{% else %}
-You have not made any orders :(
-{% endif %}</div>
+    {% endfor %}
+    {% else %}
+    You have not made any orders :(
+    {% endif %}
+</div>
 {% endblock %}
 <br>
