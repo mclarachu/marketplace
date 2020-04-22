@@ -6,6 +6,7 @@ from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
 from django.core.exceptions import ObjectDoesNotExist
 from django.conf import settings
+from . import forms
 
 from django.contrib.auth.decorators import login_required
 import stripe
