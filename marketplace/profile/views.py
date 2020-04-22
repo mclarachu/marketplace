@@ -148,7 +148,7 @@ def checkout(request):
                 item=item.item,
                 count=item.count
             )
-        itemOrder.save()
+            itemOrder.save()
 
         charge = stripe.Charge.create(
             amount=int(100*basket.totalAmount),

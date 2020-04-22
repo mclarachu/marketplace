@@ -15,6 +15,7 @@ class ModelTestCase(TestCase):
         profileTest = Profile.objects.get(user=userTest)
         self.assertFalse(profileTest.is_available)
 
+    #test default values to zero
     def test_basket_total_amount(self):
         userTest = User.objects.get(username='test')
         basketTest = Basket.objects.create(owner=userTest)

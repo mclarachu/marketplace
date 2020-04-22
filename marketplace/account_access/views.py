@@ -27,7 +27,7 @@ def signup(request):
                 user.profile.phone=form.cleaned_data['phone']
                 user.save()
                 #Create a basket for user
-                newBasket = Basket(owner = request.user)
+                newBasket = Basket(owner = user)
                 newBasket.save()
 
                 return HttpResponseRedirect(reverse('login'))
