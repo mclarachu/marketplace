@@ -3,6 +3,8 @@ from . import views
 from django.urls import reverse
 from .forms import SignupForm
 from selenium import webdriver
+from django.contrib.auth.models import User
+
 # Create your tests here.
 #test signing up
 class SignUpTest(TestCase):
@@ -27,8 +29,12 @@ class SignUpTest(TestCase):
         self.assertFalse(form.is_valid())
 
 #test authenticated and non_authenticated views
-class UserAuthenticationViewTest(TestCase):
+class AuthenticatedViewTest(TestCase):
+    def setup(self):
+        self.user = User.objects.get(username='testing')
 
+    def test_anonymous_index_view(self):
+        resp = self.get()
 
 #test that before login, some tabs are not available.
 
