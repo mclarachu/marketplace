@@ -154,7 +154,7 @@ def checkout(request):
         #delete the current basket
         basket.delete()
 
-        return HttpResponseRedirect(reverse('account:orderSummary',kwargs={'order_id':new_order.id}))
+        return HttpResponseRedirect(reverse('account:payment',kwargs={'order_id':new_order.id}))
     return render(request,'profile/checkout.html',{'list':list,'total':basket.totalAmount,'addresses':addresses})
 
 @login_required
