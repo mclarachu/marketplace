@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'account_access',
     'profile',
     'channels',
-    'chat'
+    'chat',
+    'stripe'
 ]
 
 MIDDLEWARE = [
@@ -138,4 +139,9 @@ CHANNEL_LAYERS = {
         },
     },
 }
+
+if DEBUG:
+    # test keys
+    STRIPE_PUBLISHABLE_KEY = 'pk_test_Vd7RcwJ8aSTf92dUC6z4Tvd900WAbg9RNA'
+    STRIPE_SECRET_KEY = 'sk_test_xCim41aTgEBdIhmfEBAHHWf600mZT39ECb'
 

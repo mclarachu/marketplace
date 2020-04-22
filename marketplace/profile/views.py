@@ -5,11 +5,12 @@ from .models import Product,ShippingAddress,Basket,OrderHistory,ItemBasket,ItemO
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
 from django.core.exceptions import ObjectDoesNotExist
-
-from . import forms
+from django.conf import settings
 
 from django.contrib.auth.decorators import login_required
+import stripe
 
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 # Create your views here.
 @login_required
