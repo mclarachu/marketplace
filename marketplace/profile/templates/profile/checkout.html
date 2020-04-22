@@ -40,12 +40,24 @@
             </div>
             {% endfor %}
         </div>
-        {% endif %}
         <div>
             <a href="{% url 'account:add_address2' %}">Need to add another address?</a>
         </div>
         <br>
-        <input type="submit" style="color: tomato" value="PAYMENT"/>
+        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="{{ key }}"
+                data-description="A Django Charge"
+                data-amount="{{basket.totalAmount}}"
+                data-locale="auto">
+
+        </script>
+        {% else %}
+        <div>
+            <a href="{% url 'account:add_address2' %}">Need to add another address?</a>
+        </div>
+        <h4>You must add an address to make a payment</h4>
+        {% endif %}
+        <br>
     </form>
     <br>
 </div>

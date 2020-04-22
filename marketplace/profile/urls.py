@@ -18,5 +18,4 @@ urlpatterns = [
     path('<int:item_id>/updateProduct/',views.updateProduct,name='updateProduct'),
     path('<int:address_id>/updateAddress/',views.updateAddress,name='updateAddress'),
     path('<int:item_id>/deleteItem/',views.deleteItem,name='deleteItem'),
-    path('<int:basket_id>/<int:address_id>/payment/',views.payment,name='payment')
 ]

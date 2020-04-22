@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'profile',
     'channels',
     'chat',
-    'stripe'
+    #'stripe'
 ]
 
 MIDDLEWARE = [
