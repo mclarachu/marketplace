@@ -63,6 +63,7 @@ document.querySelector('.wrapper').addEventListener('click', function() {
 });
 
 function stripeTokenHandler(token) {
+    console.log("In HERE")
     successElement.className = '';
     successElement.querySelector('.token').textContent = token.id;
     // Insert the token ID into the form so it gets submitted to the server

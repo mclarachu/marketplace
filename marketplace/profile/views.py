@@ -144,14 +144,14 @@ def payment(request,basket_id,address_id):
     publishKey = settings.STRIPE_SECRET_KEY
     if request.method == 'POST':
         try:
-            token = request.POST.get('stripeToken',request.user.id)
+          #  token = request.POST['stripeToken']
 
-            charge=stripe.Charge.create(
-                ammount=100*basket.totalAmount,
-                currency='cad',
-                description='Example charge',
-                source=token
-            )
+           # charge=stripe.Charge.create(
+            #    amount=100*basket.totalAmount,
+             #   currency='cad',
+              #  description='Example charge',
+               # source=token
+            #)
             # Create an order instance to add to OrderHistory
             new_order = OrderHistory(
                 user=request.user,

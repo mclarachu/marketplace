@@ -14,7 +14,7 @@
     <div id="collapseStripe" class="wrapper">
         <script src="https://js.stripe.com/v3/"></script>
 
-        <form action="." method="post" id="payment-form">
+        <form action="" method="post" id="payment-form">
             {% csrf_token %}
             <div id="checkoutMethods">
                 <div style="margin: 10px;">
@@ -45,7 +45,7 @@
                     <input type="hidden" id="nonce" name="payment_method_nonce"/>
                 </div>
             </div>
-            <button>Submit Payment</button>
+            <input type="submit" value="Submit Payment"/>
         </form>
 
     </div>
