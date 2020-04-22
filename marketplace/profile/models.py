@@ -17,7 +17,7 @@ def get_upload_path(instance, filename):
 
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
-    phone = models.PositiveIntegerField()
+    phone = models.PositiveIntegerField(null=True)
     is_available = models.BooleanField(default=False)
 
     def __str__(self):

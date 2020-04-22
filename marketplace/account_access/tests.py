@@ -1,9 +1,9 @@
 from django.test import TestCase
 from . import views
 from django.urls import reverse
-from .forms import SignupForm
-from selenium import webdriver
+from .forms import SignupForm,LoginForm
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
 
 # Create your tests here.
 #test signing up
@@ -22,19 +22,62 @@ class SignUpTest(TestCase):
         self.assertTrue(form.is_valid())
 
     #password is too short
-    def test_invalid_sign_up_form(self):
-        data = {'username': 'testing2', 'first_name': 'test', 'last_name': 'er', 'email': 'test2@test.com',
+    def test_invalid_password(self):
+        data = {'username': 'testing', 'first_name': 'test', 'last_name': 'er', 'email': 'test@test.com',
                 'phone': 328929329,'password': 'test4', 'password_confirm': 'test4'}
         form = SignupForm(data=data)
         self.assertFalse(form.is_valid())
 
-#test authenticated and non_authenticated views
-class AuthenticatedViewTest(TestCase):
-    def setup(self):
-        self.user = User.objects.get(username='testing')
+    # password contains only alphabets
+    def test_invalid_password_alpha(self):
+        data = {'username': 'testing', 'first_name': 'test', 'last_name': 'er', 'email': 'test@test.com',
+                'phone': 328929329, 'password': 'wrongalpha', 'password_confirm': 'wrongalpha'}
+        form = SignupForm(data=data)
+        self.assertFalse(form.is_valid())
 
-    def test_anonymous_index_view(self):
-        resp = self.get()
+    # password contains only numbers
+    def test_invalid_password_digits(self):
+        data = {'username': 'testing', 'first_name': 'test', 'last_name': 'er', 'email': 'test@test.com',
+                'phone': 328929329, 'password': '123456789', 'password_confirm': '123456789'}
+        form = SignupForm(data=data)
+        self.assertFalse(form.is_valid())
 
-#test that before login, some tabs are not available.
+    def test_invalid_email(self):
+        data = {'username': 'testing', 'first_name': 'test', 'last_name': 'er', 'email': 'test@test',
+                'phone': 328929329, 'password': 'testing123', 'password_confirm': 'testing123'}
+        form = SignupForm(data=data)
+        self.assertFalse(form.is_valid())
+
+    def test_invalid_phone_number(self):
+        data = {'username': 'testing', 'first_name': 'test', 'last_name': 'er', 'email': 'test@test',
+                'phone': 'invalid', 'password': 'testing123', 'password_confirm': 'testing123'}
+        form = SignupForm(data=data)
+        self.assertFalse(form.is_valid())
+
+#Test Login
+class LogInTest(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username='test', password='test1234', email='test@mail.com')
+        self.user.save()
+
+    def tearDown(self):
+         self.user.delete()
+
+    def test_login_form(self):
+        data = {'username':self.user.username,'password':self.user.password}
+        form = LoginForm(data=data)
+        self.assertTrue(form.is_valid())
+
+    def test_correct_login(self):
+        user = authenticate(username='test',password='test1234')
+        self.assertTrue((user is not None) and user.is_authenticated)
+
+    def test_wrong_username(self):
+        user = authenticate(username='wrong', password='test1234')
+        self.assertFalse((user is not None) and user.is_authenticated)
+
+    def test_wrong_password(self):
+        user = authenticate(username='test', password='wrong')
+        self.assertFalse((user is not None) and user.is_authenticated)
+
 

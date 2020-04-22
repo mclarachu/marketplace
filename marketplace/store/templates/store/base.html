@@ -15,16 +15,16 @@
 <header style="text-align: center;">
     <img src="{% static 'photo/banner.jpg' %}" />
     <nav>
-        <a href="{% url 'store:index' %}">Market</a>
-        <a href="{% url 'chat:index' %}">Chat Room</a>
+        <a id="index" href="{% url 'store:index' %}">Market</a>
+        <a id="chat" href="{% url 'chat:index' %}">Chat Room</a>
         {% if request.user.is_authenticated %}
-        <a href="{% url 'account:basket' %}">Basket</a>
-        <a href="{% url 'account:profile' request.user.id %}">My Store</a>
-        <a href="{% url 'account:account' %}">Account</a>
-        <a href="{% url 'logout' %}">Logout</a>
+        <a id="basket" href="{% url 'account:basket' %}">Basket</a>
+        <a id="profile" href="{% url 'account:profile' request.user.id %}">My Store</a>
+        <a id="account" href="{% url 'account:account' %}">Account</a>
+        <a id="logout" href="{% url 'logout' %}">Logout</a>
         {% else %}
-        <a href="{% url 'signup' %}">Signup</a>
-        <a href="{% url 'login' %}">Login</a>
+        <a id="signup" href="{% url 'signup' %}">Signup</a>
+        <a id="login" href="{% url 'login' %}">Login</a>
         {% endif %}
     </nav>
     <div class="roses" style="height: 60px"></div>

@@ -24,7 +24,7 @@ def signup(request):
                     first_name=form.cleaned_data['first_name'],
                     last_name=form.cleaned_data['last_name']
                 )
-                user.profile.phone =form.cleaned_data['phone']
+                user.profile.phone=form.cleaned_data['phone']
                 user.save()
                 #Create a basket for user
                 newBasket = Basket(owner = request.user)
