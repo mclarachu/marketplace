@@ -26,10 +26,10 @@
             {% endif %}
             <br>
             {% if item.seller.profile.is_available %}
-                <a style="color: lightseagreen;" href="{% url 'chat:room' item.seller.username %}">Got a question? Chat with
-                    the seller now!</a>
+            <a style="color: limegreen;" href="{% url 'chat:room' item.seller.username %}">Got a question? Chat with
+                the seller now!</a>
             {% else %}
-                Seller is currently unavailable to chat :(
+            <div style="color: indianred"> Seller is currently unavailable to chat :(</div>
             {% endif %}
             {% if item.seller == request.user %}
             <br>
