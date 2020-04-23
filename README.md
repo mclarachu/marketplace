@@ -13,3 +13,4 @@ For Channels and Redis server, we had to first install brew on MacOS to download
 4. brew services start redis
 5. python3 manage.py runserver
 6. pipenv install stripe
+7. pip install -r requirements.txt
