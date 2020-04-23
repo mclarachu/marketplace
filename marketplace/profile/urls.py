@@ -18,4 +18,6 @@ urlpatterns = [
     path('<int:item_id>/updateProduct/',views.updateProduct,name='updateProduct'),
     path('<int:address_id>/updateAddress/',views.updateAddress,name='updateAddress'),
     path('<int:item_id>/deleteItem/',views.deleteItem,name='deleteItem'),
+    path('<int:address_id>/deleteAddress/',views.deleteAddress,name='deleteAddress'),
+    path('availability',views.change_availability,name='available'),
 ]

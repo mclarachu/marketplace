@@ -219,7 +219,20 @@ def updateAddress(request,address_id):
     return render(request,'profile/updateAddress.html',{'address':address})
 
 @login_required
+def deleteAddress(request,address_id):
+    address = get_object_or_404(ShippingAddress,pk=address_id)
+    address.delete()
+    return HttpResponseRedirect(reverse('account:account'))
+
+@login_required
 def deleteItem(request,item_id):
     item = get_object_or_404(Product,pk=item_id)
     item.delete()
     return HttpResponseRedirect(reverse('account:profile',kwargs={'seller_id':request.user.id}))
+
+@login_required
+def change_availability(request):
+    user = get_object_or_404(User,pk=request.user.id)
+    user.profile.is_available = (user.profile.is_available == False)
+    user.save()
+    return HttpResponseRedirect(reverse('account:account'))

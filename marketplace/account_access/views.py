@@ -50,6 +50,7 @@ def do_login(request):
             )
             if user is not None:
                 login(request, user)
+                user.profile.is_available=True
                 if 'next' in request.GET:
                     return HttpResponseRedirect(request.GET['next'])
                 return HttpResponseRedirect(reverse('store:index'))
@@ -80,5 +81,7 @@ def do_logout(request):
     basket.totalAmount = 0
     basket.save()
 
+    #make them not available
+    request.user.profile.is_available = True
     logout(request)
     return HttpResponseRedirect(reverse('store:index'))

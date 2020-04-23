@@ -10,7 +10,15 @@
         <br>Email: {{request.user.email}}
         <br>Full name: {{request.user.get_full_name}}
         <br> Contact number: {{request.user.profile.phone}}
+        <br>
     </div>
+    <p>Chat availability:
+        {% if request.user.profile.is_available%}
+        available
+        {% else %}
+        not available
+        {% endif %}
+        <a href="{% url 'account:available' %}">change</a></p>
     {% if addresses %}
     <div class="addressContainer">
         <p>Shipping Address(es):</p>
@@ -22,6 +30,7 @@
             <br>{{address.country}}
             <br>━━━━━━━━━━✫・*。
             <br><a href="{% url 'account:updateAddress' address.id %}">Edit</a>
+               <a href="{% url 'account:deleteAddress' address.id %}">Delete</a>
         </div>
         {% endfor %}
     </div>

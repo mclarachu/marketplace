@@ -25,8 +25,12 @@
             <p>Available : Out of stock. Backordered, so come back soon!</p>
             {% endif %}
             <br>
-            <a style="color: lightseagreen;" href="{% url 'chat:room' item.seller.username %}">Got a question? Chat with
-                the seller now!</a>
+            {% if item.seller.profile.is_available %}
+                <a style="color: lightseagreen;" href="{% url 'chat:room' item.seller.username %}">Got a question? Chat with
+                    the seller now!</a>
+            {% else %}
+                Seller is currently unavailable to chat :(
+            {% endif %}
             {% if item.seller == request.user %}
             <br>
             <br>

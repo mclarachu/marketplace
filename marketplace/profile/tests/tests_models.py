@@ -25,6 +25,7 @@ class ModelTestCase(TestCase):
         userTest = User.objects.get(username='test')
         shipAdd = ShippingAddress.objects.create(user=userTest,country='Canada',street1='121 Spring Drive',city='TO',province='ON',postal_code='M2N 7F2')
         self.assertEquals(shipAdd.country, 'Canada')
+        self.assertEquals(shipAdd.street1, '121 Spring Drive')
 
     def test_order_history(self):
         userTest = User.objects.get(username='test')
