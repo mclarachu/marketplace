@@ -162,3 +162,13 @@ h3,h4 {
     padding-top: 5px;
     margin:auto;
 }
+
+
+.headerFont {
+    font-family: 'Amatic SC';
+    font-size: 30px;
+}
+.cutefont {
+    font-family: 'Amatic SC';
+    font-size: 55px;
+}
