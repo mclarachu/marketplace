@@ -1,20 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Cardo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 
 html {
     height: 100%;
     scroll-behavior: smooth;
 }
-
-/*.product {*/
-/* height: 400px;*/
-/* width: 350px;*/
-/* overflow: hidden;*/
-/*}*/
-/*.product img {*/
-/* height: auto;*/
-/* width: 350px;*/
-
-/*}*/
 
 th, td {
     border: 1px solid black;

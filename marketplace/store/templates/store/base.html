@@ -4,32 +4,40 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'photo/style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'photo/style.css' %}"/>
+    <link href='https://fonts.googleapis.com/css?family=Amatic SC' rel='stylesheet'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+        .headerFont {
+            font-family: 'Amatic SC';
+            font-size: 30px;
+        }
+    </style>
+
     {% block statics %}
     {% endblock %}
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <title>Artisanal Feline Crafts</title>
 </head>
 <body id="jumpToTop">
 
 <header style="text-align: center;">
-    <img src="{% static 'photo/banner.jpg' %}" />
+    <img src="{% static 'photo/banner.jpg' %}" alt="cat banner" style="width: 625px;height: 245px"/>
     <nav>
-        <a id="index" href="{% url 'store:index' %}">Market</a>
-        <a id="chat" href="{% url 'chat:index' %}">Chat Room</a>
+        <a id="index" class="headerFont" href="{% url 'store:index' %}">Market</a>
+        <a id="chat" class="headerFont" href="{% url 'chat:index' %}">Chat Room</a>
         {% if request.user.is_authenticated %}
-        <a id="basket" href="{% url 'account:basket' %}">Basket</a>
-        <a id="profile" href="{% url 'account:profile' request.user.id %}">My Store</a>
-        <a id="account" href="{% url 'account:account' %}">Account</a>
-        <a id="logout" href="{% url 'logout' %}">Logout</a>
+        <a id="basket" class="headerFont" href="{% url 'account:basket' %}">Basket</a>
+        <a id="profile" class="headerFont" href="{% url 'account:profile' request.user.id %}">My Store</a>
+        <a id="account" class="headerFont" href="{% url 'account:account' %}">Account</a>
+        <a id="logout" class="headerFont" href="{% url 'logout' %}">Logout</a>
         {% else %}
-        <a id="signup" href="{% url 'signup' %}">Signup</a>
-        <a id="login" href="{% url 'login' %}">Login</a>
+        <a id="signup" class="headerFont" href="{% url 'signup' %}">Signup</a>
+        <a id="login" class="headerFont" href="{% url 'login' %}">Login</a>
         {% endif %}
     </nav>
     <div class="roses" style="height: 60px"></div>
 
-    <marquee width="100%" direction="right" scrollamount="12" >
+    <marquee width="100%" direction="right" scrollamount="12">
         <h4 style="text-align: center; color: lightseagreen">CURRENT DELIVERY TIMES DELAYED BY 6-8 DAYS!</h4>
     </marquee>
 </header>
@@ -37,8 +45,9 @@
 {% block content %}
 {% endblock %}
 
-<footer style="text-align: center;" >
-    <a href="#jumpToTop"><i class="material-icons" style="font-size:60px; color: plum; padding-bottom: 20px">expand_less</i></a>
+<footer style="text-align: center;">
+    <a href="#jumpToTop"><i class="material-icons"
+                            style="font-size:60px; color: plum; padding-bottom: 20px">expand_less</i></a>
 </footer>
 </body>
 {% block script %}
